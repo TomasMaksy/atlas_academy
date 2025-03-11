@@ -9,6 +9,11 @@ export default {
       "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
+    screens: {
+      sm: "375px",
+      md: "768px",
+      lg: "1200px",
+    },
     extend: {
       colors: {
         background: "var(--background)",
