@@ -55,7 +55,7 @@ export default function PrivateLayout({ children }: PrivateLayoutProps) {
               <Link
                 key={item.key}
                 href={item.href}
-                className="flex w-full items-center justify-center"
+                className="flex w-full items-center justify-center hover:text-foreground"
                 isDisabled={selectedKey === item.key}
               >
                 <Icon
