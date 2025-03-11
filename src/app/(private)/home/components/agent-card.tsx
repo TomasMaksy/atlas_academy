@@ -1,24 +1,43 @@
 import React from "react";
 import { Card, CardBody, Image, type CardProps } from "@heroui/react";
 
-const agentCard = (props: CardProps) => {
+interface AgentCardProps extends CardProps {
+	color: string;
+	character: string;
+	title: string;
+	imageSrc: string;
+	href?: string;
+}
+
+const AgentCard: React.FC<AgentCardProps> = ({
+	color,
+	character,
+	title,
+	imageSrc,
+	href,
+	...props
+}) => {
 	return (
-		<div className="w-full shadow-2xl">
+		<div className="w-full">
 			<Card
-				className="overflow-none bg-[radial-gradient(ellipse_500%_50%_at_top,#6c5b7b,#7e2ec4)] h-[400px] flex-grow w-full"
+				className={`overflow-hidden flex-grow h-[400px] w-full`}
 				{...props}
+				shadow="lg"
+				style={{
+					background: `radial-gradient(ellipse 500% 150% at top, ${color})`,
+				}}
 			>
-				<CardBody className="px-3 relative scroll overflow-y-hidden p-10 flex-grow">
+				<CardBody className="px-3 relative scroll overflow-y-hidden p-10">
 					<div className="flex flex-col px-2 relative items-center">
-						<p className="text-7xl font-semibold text-white/100 tracking-tighter ">
-							Guido
+						<p className="text-7xl font-semibold text-white/100 tracking-tighter">
+							{character}
 						</p>
 						<span className="text-small text-white/60 tracking-normal -mt-1">
-							University Selection Guide
+							{title}
 						</span>
 
-						<div className="absolute top-20">
-							<Image src="/Guido.png" alt="Agent" width={200} />
+						<div className="absolute top-20 hover:scale-105 duration-300">
+							<Image src={imageSrc} alt={character} width={200} />
 						</div>
 					</div>
 				</CardBody>
@@ -27,4 +46,4 @@ const agentCard = (props: CardProps) => {
 	);
 };
 
-export default agentCard;
+export default AgentCard;
