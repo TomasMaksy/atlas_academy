@@ -42,8 +42,8 @@ export default function PrivateLayout({ children }: PrivateLayoutProps) {
 
   return (
     <main className="flex">
-      <div className=" min-h-[48rem] h-screen">
-        <div className="relative flex h-full w-16 flex-1 flex-col items-center border-r-small border-divider px-2 py-8 justi">
+      <div className="min-h-[48rem] h-screen">
+        <div className="relative flex h-full w-16 flex-1 flex-col items-center px-2 py-8 justi">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground">
             <AcmeIcon className="text-background" />
           </div>
@@ -99,7 +99,11 @@ export default function PrivateLayout({ children }: PrivateLayoutProps) {
           </div>
         </div>
       </div>
-      <div className="flex-1">{children}</div>
+      <div className="h-screen w-full py-2 pr-2">
+        <div className="rounded-xl overflow-hidden h-full shadow-md">
+          {children}
+        </div>
+      </div>
     </main>
   );
 }
