@@ -145,7 +145,7 @@ export function PromptInputFullLineComponent({
 
 	return (
 		<Form
-			className="flex w-full flex-col items-start gap-0 rounded-medium bg-default-100 dark:bg-default-100"
+			className="flex w-full flex-col items-start gap-0 rounded-medium bg-white dark:bg-white shadow-xl"
 			validationBehavior="native"
 			onSubmit={onSubmit}
 		>
@@ -172,7 +172,7 @@ export function PromptInputFullLineComponent({
 						"!bg-transparent shadow-none group-data-[focus-visible=true]:ring-0 group-data-[focus-visible=true]:ring-offset-0 pr-3 pl-[20px] pt-3 pb-4",
 				}}
 				maxRows={16}
-				minRows={2}
+				minRows={1}
 				name="content"
 				radius="lg"
 				spellCheck="true"
@@ -215,7 +215,6 @@ export function PromptInputFullLineComponent({
 					size="sm"
 					type="submit"
 					variant="solid"
-					// aria-label="Test"
 				>
 					<Icon
 						className={cn(

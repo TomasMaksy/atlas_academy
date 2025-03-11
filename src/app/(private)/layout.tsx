@@ -1,44 +1,45 @@
 "use client";
 
-import { Button, Link, Spacer, Tooltip } from "@heroui/react";
+import { Button, Divider, Link, Spacer, Tooltip } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { AcmeIcon } from "@/components/acme";
 import { usePathname } from "next/navigation";
 
 interface PrivateLayoutProps {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }
 
 export const menuItems = [
-  {
-    key: "home",
-    href: "/home",
-    icon: "solar:home-2-linear",
-    title: "Home",
-  },
-  {
-    key: "projects",
-    href: "/projects",
-    icon: "solar:widget-2-outline",
-    title: "Projects",
-  },
-  {
-    key: "tasks",
-    href: "#",
-    icon: "solar:checklist-minimalistic-outline",
-    title: "Tasks",
-  },
-  {
-    key: "team",
-    href: "#",
-    icon: "solar:users-group-two-rounded-outline",
-    title: "Team",
-  },
+	{
+		key: "home",
+		href: "/home",
+		icon: "solar:home-2-linear",
+		title: "Home",
+	},
+	{
+		key: "projects",
+		href: "/projects",
+		icon: "solar:widget-2-outline",
+		title: "Projects",
+	},
+	{
+		key: "tasks",
+		href: "#",
+		icon: "solar:checklist-minimalistic-outline",
+		title: "Tasks",
+	},
+	{
+		key: "team",
+		href: "#",
+		icon: "solar:users-group-two-rounded-outline",
+		title: "Team",
+	},
 ];
 
 export default function PrivateLayout({ children }: PrivateLayoutProps) {
-  const pathname = usePathname();
-  const selectedKey = pathname.split("/")[1];
+	const pathname = usePathname();
+	const selectedKey = pathname.split("/")[1];
+
 
   return (
     <main className="flex">
@@ -47,25 +48,28 @@ export default function PrivateLayout({ children }: PrivateLayoutProps) {
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground">
             <AcmeIcon className="text-background" />
           </div>
+					<Spacer y={8} />
 
-          <Spacer y={8} />
+					<div className="flex flex-col items-center gap-6 ">
+						{menuItems.map((item) => (
+							<Tooltip key={item.key} content={item.title} placement="right">
+								<Link
+									key={item.key}
+									href={item.href}
+									className="flex w-full items-center justify-center hover:text-foreground"
+									isDisabled={selectedKey === item.key}
+								>
+									<Icon
+										className="text-default-500 group-data-[selected=true]:text-foreground"
+										icon={item.icon}
+										width={24}
+									/>
+								</Link>
+							</Tooltip>
+						))}
+						<Divider className="w-10" />
+					</div>
 
-          <div className="flex flex-col items-center gap-4">
-            {menuItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                className="flex w-full items-center justify-center hover:text-foreground"
-                isDisabled={selectedKey === item.key}
-              >
-                <Icon
-                  className="text-default-500 group-data-[selected=true]:text-foreground"
-                  icon={item.icon}
-                  width={24}
-                />
-              </Link>
-            ))}
-          </div>
 
           <Spacer y={8} />
 
