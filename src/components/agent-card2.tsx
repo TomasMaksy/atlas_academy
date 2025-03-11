@@ -20,7 +20,7 @@ const agentCard = (props: CardProps) => {
 						</span>
 
 						<div className="absolute top-20">
-							<Image src="/0084.png" alt="Agent" width={300} />{" "}
+							<Image src="/Esme.png" alt="Agent" width={300} />{" "}
 						</div>
 					</div>
 				</CardBody>
