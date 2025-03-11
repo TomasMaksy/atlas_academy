@@ -28,7 +28,7 @@ export default function ChatPage() {
   }, []);
 
   return (
-    <div className="flex flex-row h-screen w-full bg-[radial-gradient(ellipse_100%_50%_at_top,_#98dbd5,_white)]">
+    <div className="flex flex-row h-full w-full bg-[radial-gradient(ellipse_100%_50%_at_top,_#98dbd5,_white)]">
       <aside
         className={`h-full bg-[radial-gradient(ellipse_100%_100%_at_top,_#1af9ea,_#3fafa8,_#116661)] text-white py-2 shadow-md transition-all duration-300 ${
           isSidebarCollapsed
