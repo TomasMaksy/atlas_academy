@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
+import PromptInputFullLineWithBottomActions from "./prompt-input-full-line-with-bottom-actions";
 
-import PromptInputFullLineWithBottomActions from "@/app/home/prompt-input-full-line-with-bottom-actions";
+
 
 export default function Component() {
 	return (
