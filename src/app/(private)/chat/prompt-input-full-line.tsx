@@ -84,7 +84,7 @@ export function PromptInputFullLineComponent({ id }: PromptInputProps) {
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      handleSubmit()
+      handleSubmit();
     },
     [handleSubmit]
   );

@@ -23,6 +23,7 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
   const { messages, status, setMessages, append } = useChat({
     id,
     initialMessages,
+    experimental_throttle: 50,
   });
 
   const [file, setFile] = useState<File | null>(null);
@@ -124,7 +125,7 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
           <CardBody>
             {isUploading ? (
               <span className="flex items-center text-center gap-3">
-                <Spinner className="h-1 pb-1"  variant="dots" />
+                <Spinner className="h-1 pb-1" variant="dots" />
                 Uploading...
               </span>
             ) : (
@@ -132,7 +133,6 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
             )}
           </CardBody>
         </Card>
-        {/* Hidden file input to trigger file selection */}
         <input
           type="file"
           ref={fileInputRef}
@@ -144,30 +144,13 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
   ) : (
     <ScrollShadow className="flex h-full max-h-[80vh] flex-col gap-6 overflow-y-auto p-6 pb-8">
       {messages.map((message, index) => (
-        <motion.div
+        <MessageCard
           key={index}
-          initial={{ y: 5, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: index * 0.2 }} // Delay increases with index for sequential animation
-        >
-          <MessageCard
-            status={message.id === "error" ? "failed" : "success"}
-            avatar={
-              message.role === "assistant"
-                ? "https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/avatar_ai.png"
-                : "https://d2u8k2ocievbld.cloudfront.net/memojis/male/6.png"
-            }
-            loading={message.id === "loading"}
-            message={message.content}
-            messageClassName={
-              message.role === "user"
-                ? "bg-content3 text-content3-foreground bg-white"
-                : message.id !== "error"
-                ? "bg-white"
-                : ""
-            }
-          />
-        </motion.div>
+          role={message.role}
+          loading={message.id === "loading"}
+          failed={message.id === "error"}
+          message={message.content}
+        />
       ))}
     </ScrollShadow>
   );
