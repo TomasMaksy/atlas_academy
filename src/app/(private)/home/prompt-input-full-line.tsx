@@ -145,7 +145,7 @@ export function PromptInputFullLineComponent({
 
 	return (
 		<Form
-			className="flex w-full flex-col items-start gap-0 rounded-medium bg-white dark:bg-white shadow-xl"
+			className="flex w-full flex-col items-start gap-0 rounded-medium bg-white dark:bg-white shadow-[0_0px_30px_rgba(0,0,0,0.1)]"
 			validationBehavior="native"
 			onSubmit={onSubmit}
 		>

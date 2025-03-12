@@ -6,7 +6,6 @@ interface AgentCardProps extends CardProps {
 	character: string;
 	title: string;
 	imageSrc: string;
-	href?: string;
 }
 
 const AgentCard: React.FC<AgentCardProps> = ({
@@ -14,7 +13,6 @@ const AgentCard: React.FC<AgentCardProps> = ({
 	character,
 	title,
 	imageSrc,
-	href,
 	...props
 }) => {
 	return (
