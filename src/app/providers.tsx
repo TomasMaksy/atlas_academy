@@ -12,7 +12,7 @@ export default function Providers({ children }: ProvidersProps) {
   const router = useRouter();
   return (
     <HeroUIProvider navigate={router.push}>
-      <ToastProvider />
+      <ToastProvider placement={"top-right"} toastOffset={8} />
       {children}
     </HeroUIProvider>
   );
