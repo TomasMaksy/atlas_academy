@@ -10,6 +10,7 @@ import { Card, Link } from "@heroui/react";
 export default function Component() {
 	return (
 		<div className="flex w-full bg-[radial-gradient(ellipse_75%_40%_at_top,rgba(63,175,168,1),rgba(255,255,255,1))] flex-col">
+
 			<div className="mx-4">
 				<div className="flex w-full items-top justify-center py-24 z-50">
 					<div className="flex w-full max-w-xl flex-col items-center gap-8">

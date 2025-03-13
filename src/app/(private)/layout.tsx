@@ -9,7 +9,7 @@ interface PrivateLayoutProps {
   children: React.ReactNode;
 }
 
-export const menuItems = [
+const menuItems = [
   {
     key: "home",
     href: "/home",
@@ -101,8 +101,8 @@ export default function PrivateLayout({ children }: PrivateLayoutProps) {
           </div>
         </div>
       </div>
-      <div className="w-full min-h-screen py-2 pr-2 overflow-y-auto">
-        <div className="rounded-xl h-full overflow-hidden shadow-md ml-16">
+      <div className="w-full min-h-screen py-2 pr-2">
+        <div className="rounded-xl h-full overflow-hidden shadow-inner-strong ml-16 ">
           {children}
         </div>
       </div>
