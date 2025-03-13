@@ -74,7 +74,7 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
   return messages.length === 0 ? (
     <motion.div
       key="overview"
-      className="mx-auto mt-20 text-center"
+      className="mx-auto mt-20 text-center md:max-w-3xl px-6"
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
@@ -86,11 +86,11 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
         </h1>
         <h2 className="text-3xl md:text-4xl font-bold mt-4">How can I help?</h2>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
+      <div className="flex flex-wrap gap-6 mt-8 justify-center">
         <Card
           isPressable
           classNames={{
-            base: "p-4 shadow-md w-full hover:shadow-lg min-w-[400px]",
+            base: "p-4 shadow-md w-full hover:shadow-lg min-w-[300px] flex-1",
             body: "text-lg text-gray-600 font-bold",
           }}
           onPress={() =>
@@ -105,7 +105,7 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
         <Card
           isPressable
           classNames={{
-            base: "p-4 shadow-md w-full bg-transparent min-w-[400px] shadow-none border-dashed border-2 border-gray-400 hover:border-gray-500 cursor-pointer",
+            base: "flex-1 p-4 shadow-md w-full bg-transparent min-w-[300px] shadow-none border-dashed border-2 border-gray-400 hover:border-gray-500 cursor-pointer",
             body: "text-lg text-gray-600 font-bold",
           }}
           onPress={() => {
