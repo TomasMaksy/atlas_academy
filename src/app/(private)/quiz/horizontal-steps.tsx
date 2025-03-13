@@ -89,7 +89,7 @@ const HorizontalSteps = React.forwardRef<
 >(
 	(
 		{
-			color = "primary",
+			color = "default",
 			steps = [],
 			defaultStep = 0,
 			onStepChange,
@@ -174,7 +174,7 @@ const HorizontalSteps = React.forwardRef<
 						return (
 							<li
 								key={stepIdx}
-								className="relative flex w-full items-center justify-between" // Ensuring full width for each step
+								className="relative flex w-full items-center justify-between " // Ensuring full width for each step
 							>
 								<button
 									ref={ref}
@@ -186,9 +186,12 @@ const HorizontalSteps = React.forwardRef<
 									onClick={() => setCurrentStep(stepIdx)}
 									{...props}
 								>
-									<div className="h-full relative flex items-center">
+									<div className="h-full relative flex items-center ">
 										<LazyMotion features={domAnimation}>
-											<m.div animate={status} className="relative w-full">
+											<m.div
+												animate={status}
+												className="relative w-full flex justify-between"
+											>
 												{" "}
 												{/* Ensure full width */}
 												<m.div
@@ -203,18 +206,18 @@ const HorizontalSteps = React.forwardRef<
 													variants={{
 														inactive: {
 															backgroundColor: "transparent",
-															borderColor: "var(--inactive-border-color)",
-															color: "var(--inactive-color)",
+															borderColor: "white",
+															color: "white",
 														},
 														active: {
 															backgroundColor: "transparent",
-															borderColor: "var(--active-border-color)",
-															color: "var(--active-color)",
+															borderColor: "white",
+															color: "white",
 														},
 														complete: {
-															backgroundColor:
-																"var(--complete-background-color)",
-															borderColor: "var(--complete-border-color)",
+															backgroundColor: "white",
+															borderColor: "white",
+															color: "white",
 														},
 													}}
 												>
@@ -232,20 +235,22 @@ const HorizontalSteps = React.forwardRef<
 											<div
 												aria-hidden="true"
 												className={cn(
-													"pointer-events-none absolute left-6 top-1/2 w-[calc(10rem)] -translate-y-1/2 translate-x-1/2 items-center"
+													"pointer-events-none absolute top-1/2 -translate-y-1/2 translate-x-screen"
 												)}
-												style={{
-													"--idx": stepIdx,
-												}}
 											>
 												<div
 													className={cn(
 														"relative h-0.5 w-full bg-default-200 transition-colors duration-300",
 														"after:absolute after:block after:h-full after:w-0 after:bg-[var(--active-border-color)] after:transition-[width] after:duration-300 after:content-['']",
 														{
-															"after:w-full": stepIdx < currentStep,
+															"after:w-[50%]": stepIdx < currentStep,
 														}
 													)}
+													style={{
+														left: `calc(100% / ${steps.length} * ${
+															stepIdx + 1
+														})`, // Position the progress bar between stepIdx and stepIdx+1
+													}}
 												/>
 											</div>
 										)}
@@ -253,9 +258,9 @@ const HorizontalSteps = React.forwardRef<
 									<div className="max-w-[100px] flex-1 px-2 text-center lg:max-w-[120px]">
 										<div
 											className={cn(
-												"line-clamp-2 text-small font-medium text-default-foreground transition-[color,opacity] duration-300 group-active:opacity-80 lg:text-medium",
+												"line-clamp-2 text-small font-medium text-white transition-[color,opacity] duration-300 group-active:opacity-80 lg:text-medium",
 												{
-													"text-default-500": status === "inactive",
+													"text-white": status === "inactive",
 												}
 											)}
 										>

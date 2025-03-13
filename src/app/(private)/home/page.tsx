@@ -5,7 +5,7 @@ import PromptInputFullLineWithBottomActions from "./prompt-input-full-line-with-
 import AgentCard from "./components/agent-card";
 import ProgressCard from "@/app/(private)/home/components/progress-card";
 import DeadlineCard from "./components/deadline-card";
-import { Card } from "@heroui/react";
+import { Card, Link } from "@heroui/react";
 
 export default function Component() {
 	return (
@@ -31,12 +31,14 @@ export default function Component() {
 					</Card>
 				</div>
 				<div className=" flex md:flex-row sm:flex-col justify-center gap-8 text-[#08010e] ">
-					<AgentCard
-						color="#3fafa8,#1af9ea"
-						character="Esme"
-						title="Common Essay Writer"
-						imageSrc="/Esme.png"
-					/>
+					<Link href="/quiz" className="w-full">
+						<AgentCard
+							color="#3fafa8,#1af9ea"
+							character="Esme"
+							title="Common Essay Writer"
+							imageSrc="/Esme.png"
+						/>
+					</Link>
 					<AgentCard
 						color="#c9d843,#d6e07e"
 						character="Irven"

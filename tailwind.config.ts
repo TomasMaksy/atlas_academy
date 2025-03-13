@@ -14,10 +14,15 @@ export default {
       md: "768px",
       lg: "1200px",
     },
-    extend: {
+    light: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        white: "#FFFFFF",
+        background: "#FFFFFF", 
+        foreground: "#11181C", 
+        primary: {
+          foreground: "#3f3f46",
+          DEFAULT: "#3f3f46"
+        },
       },
     },
   },
