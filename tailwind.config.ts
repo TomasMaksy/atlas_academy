@@ -8,29 +8,27 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
-
-    screens: {
-      sm: "375px",
-      md: "768px",
-      lg: "1200px",
-    },
-    light: {
+    extend: {
+      screens: {
+        sm: "375px",
+        md: "768px",
+        lg: "1200px",
+      },
       colors: {
         white: "#FFFFFF",
-        background: "#FFFFFF", 
-        foreground: "#11181C", 
+        background: "#FFFFFF",
+        foreground: "#11181C",
         primary: {
+          DEFAULT: "#3f3f46",
           foreground: "#3f3f46",
-          DEFAULT: "#3f3f46"
         },
       },
-      extend: {
       boxShadow: {
         "inner-strong": "inset 0 6px 12px 2px rgba(0, 0, 0, 0.25)",
       },
     },
   },
-  darkMode: "class",
   plugins: [heroui()],
 } satisfies Config;
