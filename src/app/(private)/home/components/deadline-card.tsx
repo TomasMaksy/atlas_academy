@@ -13,7 +13,7 @@ export default function DaysTillDeadlineCard() {
 	};
 
 	return (
-		<Card className="flex flex-col border border-transparent p-4 dark:border-default-100 flex-grow">
+		<Card className="flex flex-col  p-4 dark:border-default-100 flex-grow">
 			<div
 				className={cn(
 					"flex h-8 w-8 items-center justify-center rounded-md border p-0.5",
