@@ -219,7 +219,7 @@ export function PromptInputFullLineComponent({
 					<Icon
 						className={cn(
 							"[&>path]:stroke-[2px]",
-							!prompt ? "text-default-600" : "text-primary-foreground"
+							!prompt ? "text-default-600" : "text-white"
 						)}
 						icon={"solar:arrow-right-linear"}
 						width={20}

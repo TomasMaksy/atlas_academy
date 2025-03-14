@@ -9,8 +9,7 @@ import { Card, Link } from "@heroui/react";
 
 export default function Component() {
 	return (
-		<div className="flex w-full bg-[radial-gradient(ellipse_75%_40%_at_top,rgba(63,175,168,1),rgba(255,255,255,1))] flex-col">
-
+		<div className="flex w-full bg-[radial-gradient(ellipse_75%_40%_at_top,rgba(63,175,168,1),rgba(250,255,245,0))] flex-col">
 			<div className="mx-4">
 				<div className="flex w-full items-top justify-center py-24 z-50">
 					<div className="flex w-full max-w-xl flex-col items-center gap-8">
@@ -31,7 +30,7 @@ export default function Component() {
 						</div>
 					</Card>
 				</div>
-				<div className=" flex md:flex-row sm:flex-col justify-center gap-8 text-[#08010e] ">
+				<div className=" flex md:flex-row sm:flex-col justify-center gap-8 text-[#08010e] mx-4  mb-12">
 					<Link href="/quiz" className="w-full">
 						<AgentCard
 							color="#3fafa8,#1af9ea"
