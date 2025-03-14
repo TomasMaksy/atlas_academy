@@ -1,0 +1,40 @@
+"use client";
+
+import { Canvas } from "@react-three/fiber";
+import { useState } from "react";
+import { OrbitControls } from "@react-three/drei";
+import AnimatedModel from "./animated-model";
+
+export default function Character() {
+    const [animation, setAnimation] = useState("Idle"); // Default animation
+
+    return (
+        <div className="">
+            {/* Animation Buttons */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+                {["Idle", "Wave", "Think", "Text"].map((anim) => (
+                    <button
+                        key={anim}
+                        className={`px-4 py-2 rounded-lg font-semibold transition ${animation === anim
+                            ? "bg-blue-600 text-white shadow-lg"
+                            : "bg-gray-300 text-black hover:bg-gray-400"
+                            }`}
+                        onClick={() => setAnimation(anim)}
+                    >
+                        {anim}
+                    </button>
+                ))}
+            </div>
+
+            {/* Transparent 3D Scene */}
+            <Canvas className=" aspect-square" gl={{ antialias: true, alpha: true }} camera={{ fov: 30 }}>
+                <ambientLight intensity={1} />
+                <directionalLight position={[5, 5, 5]} intensity={2} />
+                <directionalLight position={[-2.5, 2.5, -5]} intensity={10} />
+                <AnimatedModel animationName={animation} />
+
+                {/* <OrbitControls /> */}
+            </Canvas>
+        </div>
+    );
+}

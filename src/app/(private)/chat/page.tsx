@@ -1,3 +1,4 @@
+import Character from "./character";
 import { Chat } from "./chat";
 import Cover from "./cover";
 import { SidebarProvider } from "./sidebar-context";
@@ -17,12 +18,13 @@ export default function Page() {
 
               <div className="flex flex-col items-center">
                 <>
-                  <Image
+                  {/* <Image
                     src="/Esme.png"
                     alt="Agent"
                     className="w-40 object-cover rounded-full"
-                  />
-                  <Button className="w-full mt-4 py-3 text-xl font-bold bg-white text-[#3fafa8]">
+                  /> */}
+                  <Character></Character>
+                  <Button className="w-full mt-0 py-3 text-xl font-bold bg-white text-[#3fafa8]">
                     + New Chat
                   </Button>
                 </>
