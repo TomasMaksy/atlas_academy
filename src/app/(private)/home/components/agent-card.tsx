@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, CardBody, cn, Image, type CardProps } from "@heroui/react";
+
+import { Card, CardBody, Image, cn, Link, type CardProps } from "@heroui/react";
 
 interface AgentCardProps extends CardProps {
   color: string;
@@ -20,6 +21,8 @@ const AgentCard: React.FC<AgentCardProps> = ({
   return (
     <div className="w-full">
       <Card
+        as={Link}
+				href="/quiz"
         className={cn(
           `overflow-hidden flex-grow h-[400px] w-full`,
           higlighted
@@ -40,6 +43,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
             <span className="text-small text-white/60 tracking-normal -mt-1">
               {title}
             </span>
+
 
             <div className="absolute top-20 hover:scale-105 duration-300">
               <Image src={imageSrc} alt={character} width={200} />
