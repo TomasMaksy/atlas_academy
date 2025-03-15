@@ -198,7 +198,7 @@ const steps = [
 	{
 		title: "",
 		title2: "Identify Key Moments in Your Life",
-		imageUrl: "/Esme.png",
+		imageUrl: "/Guido.png",
 		color: "rgba(63, 175, 168, 1)",
 		question: `Now, take a moment to think about an event or experience that has played a major role in shaping the person you are today. You may have several, but focus on one that stands out as particularly meaningful. Jot down the key details—without analyzing or reflecting on them just yet. Treat it like a journal entry, simply noting what happened.
 

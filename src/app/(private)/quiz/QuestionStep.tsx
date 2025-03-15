@@ -41,7 +41,12 @@ export default function QuestionStep({
 				}`}
 			>
 				<div className="z-10">
-					<Image alt="image" src={imageUrl} width={400} className="z-10" />
+					<Image
+						alt="image"
+						src={imageUrl}
+						width={600}
+						className="ml-10 mb-56"
+					/>
 				</div>
 			</div>
 
@@ -65,24 +70,26 @@ export default function QuestionStep({
 			>
 				<div>
 					{question.length > 100 ? (
-						<div className="bottom-0 z-20 gap-4 flex flex-row justify-end mb-8 p-4 h-[500px] whitespace-pre-line  ">
-							<div className="text-white tracking-tighter flex sm:text-lg md:text-xl z-50 mb-6 w-[900px] font-semibold leading-tight text-start justify-end mt-auto">
+						<div className="flex flex-row  p-4 h-[500px] whitespace-pre-line gap-32">
+							<div className="text-white tracking-tighter flex sm:text-lg md:text-2xl  w-[900px] leading-tight text-start justify-start font-extrabold ">
 								<div
 									dangerouslySetInnerHTML={{
 										__html: question, // question contains HTML like <span> tag
 									}}
 								/>
 							</div>
-							<div className="flex flex-col gap-6 items-center justify-end h-full">
+							<div className="flex flex-col gap-6 items-center justify-end h-full pb-20">
 								<Textarea
 									value={value}
 									onChange={onChange}
 									placeholder={inputText}
+									label="Your thoughts..."
 									size="lg"
 									radius="lg"
 									color="default"
-									className="md:w-full  text-default-700 placeholder:text-default-500 font-semibold text-md w-full "
+									className="md:w-full  text-default-700 placeholder:text-default-500 font-semibold text-md w-full"
 									classNames={{
+										label: "text-default-400",
 										input: "min-h-[180px]",
 									}}
 								/>
