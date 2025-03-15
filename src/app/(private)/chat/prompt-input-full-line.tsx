@@ -12,6 +12,7 @@ import { Badge } from "@heroui/react";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import PromptInput from "./prompt-input";
 import { useChat } from "@ai-sdk/react";
+import { useEssay } from "./essay-context";
 
 interface PromptInputProps {
   id: string;
@@ -63,8 +64,12 @@ const PromptInputAssets = ({
 };
 
 export function PromptInputFullLineComponent({ id }: PromptInputProps) {
+  const { essay } = useEssay();
   const { input, handleSubmit, setInput, setMessages } = useChat({
     id,
+    body: {
+      essay,
+    },
     onError: () =>
       setMessages((prev) => [
         ...prev,
