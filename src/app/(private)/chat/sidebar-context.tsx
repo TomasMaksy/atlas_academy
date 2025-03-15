@@ -7,6 +7,7 @@ type SidebarContextType = {
   rightOpen: boolean;
   toggleLeft: () => void;
   toggleRight: () => void;
+  openRight: () => void;
 };
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
@@ -25,9 +26,14 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
     setLeftOpen(false);
   }
 
+  function openRight() {
+    setRightOpen(true);
+    setLeftOpen(false);
+  }
+
   return (
     <SidebarContext.Provider
-      value={{ leftOpen, rightOpen, toggleLeft, toggleRight }}
+      value={{ leftOpen, rightOpen, toggleLeft, toggleRight, openRight }}
     >
       {children}
     </SidebarContext.Provider>

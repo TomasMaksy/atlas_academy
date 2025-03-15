@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Character from "./character";
+
+import "./styles.css";
 import Chat from "./chat";
 import Cover from "./cover";
 import { EssayProvider } from "./essay-context";

@@ -14,6 +14,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useRef, useState } from "react";
 import MessageCard from "./message-card";
 
+
 interface MessagesProps {
   id: string;
   initialMessages: Array<Message>;
@@ -96,7 +97,10 @@ export default function Messages({ id, initialMessages, setChatState }: Messages
             body: "text-lg text-gray-600 font-bold",
           }}
           onPress={() =>
-            append({ role: "user", content: "Write me a common app essay" })
+            append({
+              role: "user",
+              content: "Write me a common app essay from scratch",
+            })
           }
         >
           <CardHeader>

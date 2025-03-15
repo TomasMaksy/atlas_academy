@@ -1,3 +1,5 @@
+import { InferInsertModel, InferSelectModel } from "drizzle-orm";
+
 import { sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 // export const chatTable = sqliteTable("chat", {
@@ -42,3 +44,6 @@ export const userDataTable = sqliteTable("user_data", {
   fiveSec: text().notNull(),
   digDeeper: text().notNull(),
 });
+
+export type UserData = InferSelectModel<typeof userDataTable>;
+export type InsertUserData = InferInsertModel<typeof userDataTable>;

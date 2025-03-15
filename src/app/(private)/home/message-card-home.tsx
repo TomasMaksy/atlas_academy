@@ -5,18 +5,13 @@ import { Avatar, Badge, Card, CardBody, Link, Spinner } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import { UIMessage } from "ai";
-import { useEssay } from "./essay-context";
-import { useSidebar } from "./sidebar-context";
 
 export type MessageCardProps = React.HTMLAttributes<HTMLDivElement> & {
   message: UIMessage;
 };
 
-const MessageCard = React.forwardRef<HTMLDivElement, MessageCardProps>(
+const MessageCardHome = React.forwardRef<HTMLDivElement, MessageCardProps>(
   ({ message, ...props }, ref) => {
-    const { setId } = useEssay();
-    const { openRight } = useSidebar();
-
     const messageFailed = message.id === "failed";
     const messageLoading = message.id === "loading";
 
@@ -73,7 +68,8 @@ const MessageCard = React.forwardRef<HTMLDivElement, MessageCardProps>(
                     return (
                       <div
                         key={index}
-                        className="relative w-full rounded-medium px-4 py-3 text-default-600 shadow-lg bg-white pr-20 text-small"
+                        className=" relative w-full rounded-medium px-4 py-3 text-default-600 shadow-lg border-1 
+                         pr-20 text-small"
                       >
                         <p>{part.text}</p>
                       </div>
@@ -82,8 +78,7 @@ const MessageCard = React.forwardRef<HTMLDivElement, MessageCardProps>(
                     const { toolCallId, state, toolName } = part.toolInvocation;
 
                     // if (toolName === "detectPlagiarism" && state === "result") {
-                      // return
-
+                    // return
 
                     if (
                       toolName != "createEssayFromScratchAndDisplay" &&
@@ -104,15 +99,6 @@ const MessageCard = React.forwardRef<HTMLDivElement, MessageCardProps>(
                         isPressable
                         key={toolCallId}
                         isDisabled={state !== "result"}
-                        onPress={() => {
-                          if (state === "result") {
-                            const { result } = part.toolInvocation;
-                            const { id } = result;
-
-                            setId(id);
-                            openRight();
-                          }
-                        }}
                         className="w-[400px] shadow-lg rounded-2xl bg-white font-bold text-xl "
                       >
                         <CardBody className="flex flex-row items-center gap-4">
@@ -144,6 +130,5 @@ const MessageCard = React.forwardRef<HTMLDivElement, MessageCardProps>(
   }
 );
 
-export default MessageCard;
-
-MessageCard.displayName = "MessageCard";
+export default MessageCardHome;
+MessageCardHome.displayName = "MessageCardHome";
