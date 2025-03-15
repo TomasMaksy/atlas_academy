@@ -34,8 +34,8 @@ const AgentCard: React.FC<AgentCardProps> = ({
 							{title}
 						</span>
 
-						<div className="absolute top-20 hover:scale-105 duration-300">
-							<Image src={imageSrc} alt={character} width={200} />
+						<div className="absolute top-16 hover:scale-105 duration-300">
+							<Image src={imageSrc} alt={character} width={350} />
 						</div>
 					</div>
 				</CardBody>

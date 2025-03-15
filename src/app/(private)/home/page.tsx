@@ -33,10 +33,10 @@ export default function Component() {
 				<div className=" flex md:flex-row sm:flex-col justify-center gap-8 text-[#08010e] mx-4  mb-12">
 					<Link href="/quiz" className="w-full">
 						<AgentCard
-							color="#3fafa8,#1af9ea"
-							character="Esme"
+							color="#2a9790,#1af9c5"//#3fafa8,#1af9ea"
+							character="Tommy"
 							title="Common Essay Writer"
-							imageSrc="/Esme.png"
+							imageSrc="/Tommy.png"
 						/>
 					</Link>
 					<AgentCard
