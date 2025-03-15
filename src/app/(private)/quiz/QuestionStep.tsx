@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Image, Input, Textarea, Tooltip } from "@heroui/react";
+import { Button, Image, Input, Textarea } from "@heroui/react";
 
 import { Pacifico } from "next/font/google";
 
@@ -98,7 +98,7 @@ export default function QuestionStep({
 				<div className="flex flex-col justify-end items-center align-bottom z-50 h-[700px]">
 					{question.length > 100 ? (
 						<div className="flex flex-row p-4 h-[400px] whitespace-pre-line gap-32">
-							<div className="text-white tracking-tighter flex flex-col sm:text-lg md:text-2xl w-[900px] leading-tight text-start justify-start font-extrabold gap-2">
+							<div className="text-white/95 tracking-tighter flex flex-col sm:text-lg md:text-2xl w-[900px] leading-tight text-start justify-start font-extrabold gap-2">
 								<div
 									dangerouslySetInnerHTML={{
 										__html: question, // question contains HTML like <span> tag
@@ -137,7 +137,11 @@ export default function QuestionStep({
 						</div>
 					) : (
 						<div className="bottom-0 z-20 gap-4 flex flex-col items-center text-center justify-end p-4 mb-8 h-[500px] whitespace-pre-line ">
-							<div className="font-black leading-tight text-white tracking-tighter sm:text-2xl md:text-3xl z-50 mb-6 text-center w-full">
+							<div
+								className=" flex w-full justify-center items-center font-black leading-tight  text-white tracking-tighter sm:text-2xl md:text-5xl z-50 text-center"
+								style={{ textShadow: "4px 4px 4px rgba(0, 0, 0, 0.11)" }}
+							>
+								{" "}
 								{question}
 							</div>
 							<Input
