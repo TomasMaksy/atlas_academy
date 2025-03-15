@@ -5,7 +5,7 @@ import { EssayProvider } from "./essay-context";
 import EssayEditor from "./essay-editor";
 
 import { SidebarProvider } from "./sidebar-context";
-import { Button, Image } from "@heroui/react";
+import { Button } from "@heroui/react";
 
 export default function Page() {
   return (

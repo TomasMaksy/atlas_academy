@@ -2,12 +2,12 @@
 
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useEffect, useRef } from "react";
-import { Group, AnimationAction, Box3, Vector3 } from "three";
+import { Group, Box3, Vector3, AnimationClip } from "three";
 import { useThree } from "@react-three/fiber";
 
 type GLTFResult = {
     scene: Group;
-    animations: any[];
+    animations: AnimationClip[];
 };
 
 interface AnimatedModelProps {
