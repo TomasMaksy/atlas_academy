@@ -10,10 +10,11 @@ import { useSidebar } from "./sidebar-context";
 
 export type MessageCardProps = React.HTMLAttributes<HTMLDivElement> & {
   message: UIMessage;
+  openGuido: () => void;
 };
 
 const MessageCard = React.forwardRef<HTMLDivElement, MessageCardProps>(
-  ({ message, ...props }, ref) => {
+  ({ message, openGuido, ...props }, ref) => {
     const { setId } = useEssay();
     const { openRight } = useSidebar();
 
@@ -111,6 +112,11 @@ const MessageCard = React.forwardRef<HTMLDivElement, MessageCardProps>(
 
                             setId(id);
                             openRight();
+                            // call openguido after 10 seconds
+                            setTimeout(() => {
+                              openGuido();
+                            }
+                            , 10000);
                           }
                         }}
                         className="w-[400px] shadow-lg rounded-2xl bg-white font-bold text-xl "

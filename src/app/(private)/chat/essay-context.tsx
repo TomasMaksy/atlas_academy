@@ -74,7 +74,7 @@ export function EssayProvider({ children }: { children: ReactNode }) {
 export function useEssay() {
   const context = useContext(EssayContext);
   if (!context) {
-    throw new Error("useSidebar must be used within a SidebarProvider");
+    throw new Error("useEssay must be used within an EssayProvider");
   }
   return context;
 }

@@ -14,14 +14,19 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useRef, useState } from "react";
 import MessageCard from "./message-card";
 
-
 interface MessagesProps {
   id: string;
   initialMessages: Array<Message>;
   setChatState: (state: string) => void;
+  openGuido: () => void;
 }
 
-export default function Messages({ id, initialMessages, setChatState }: MessagesProps) {
+export default function Messages({
+  id,
+  initialMessages,
+  setChatState,
+  openGuido,
+}: MessagesProps) {
   const { messages, status, setMessages, append } = useChat({
     id,
     initialMessages,
@@ -151,7 +156,7 @@ export default function Messages({ id, initialMessages, setChatState }: Messages
     // return (
     <ScrollShadow className="flex h-full max-h-[80vh] flex-col gap-6 overflow-y-auto p-6 pb-8">
       {messages.map((message, id) => (
-        <MessageCard message={message} key={id} />
+        <MessageCard message={message} key={id} openGuido={openGuido} />
       ))}
       {/* <MessageCard
         message={{
