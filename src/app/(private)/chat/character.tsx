@@ -1,11 +1,21 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AnimatedModel from "./animated-model";
 
-export default function Character() {
-    const [animation, setAnimation] = useState("Idle"); // Default animation
+interface CharacterProps {
+    chatState: any;
+}
+
+export default function Character({ chatState }: CharacterProps) {
+    const [animation, setAnimation] = useState("");
+
+    useEffect(() => {
+        if (chatState == "submitted") setAnimation("Think");
+        else if (chatState == "streaming") setAnimation("Text");
+        else setAnimation("Idle");
+    }, [chatState]);
 
     return (
         <div className="">

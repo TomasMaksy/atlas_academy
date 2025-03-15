@@ -17,9 +17,10 @@ import MessageCard from "./message-card";
 interface MessagesProps {
   id: string;
   initialMessages: Array<Message>;
+  setChatState: any;
 }
 
-export default function Messages({ id, initialMessages }: MessagesProps) {
+export default function Messages({ id, initialMessages, setChatState }: MessagesProps) {
   const { messages, status, setMessages, append } = useChat({
     id,
     initialMessages,
@@ -32,6 +33,7 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    setChatState(status);
     if (status === "submitted") {
       setMessages((prevMessages) => [
         ...prevMessages,

@@ -1,7 +1,7 @@
 "use client";
 
 import { useGLTF, useAnimations } from "@react-three/drei";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Group, Box3, Vector3, AnimationClip } from "three";
 import { useThree } from "@react-three/fiber";
 
@@ -20,29 +20,56 @@ export default function AnimatedModel({ animationName }: AnimatedModelProps) {
     const { actions } = useAnimations(animations, modelRef);
     const { camera } = useThree();
 
+    const targetAnimation = useRef("");
+    const currentAnimation = useRef("");
+    const readyTimeout = useRef<NodeJS.Timeout | null>(null);
+
     useEffect(() => {
+        if (currentAnimation.current) return;
+        targetAnimation.current = "Wave";
+        updateAnimation();
+    }, []);
+
+    useEffect(() => {
+        targetAnimation.current = animationName;
+        if (readyTimeout.current != null) return;
+        updateAnimation();
+
+    }, [animationName]);
+
+    const updateAnimation = () => {
+        if (currentAnimation.current == targetAnimation.current) {
+            readyTimeout.current = null;
+        } else {
+            currentAnimation.current = targetAnimation.current;
+            transition();
+            let delay = targetAnimation.current == "Wave" ? 3000 : 1000;
+            readyTimeout.current = setTimeout(() => { updateAnimation(); }, delay);
+        }
+    }
+
+    const transition = () => {
         if (actions) {
-            // Stop previous animations smoothly
             Object.values(actions).forEach((action) => {
                 if (action != null) action.fadeOut(0.5);
             });
 
-            // Play the new animation smoothly
-            if (actions[animationName]) {
-                actions[animationName].reset().fadeIn(0.5).play();
+            if (actions[currentAnimation.current]) {
+                actions[currentAnimation.current].reset().fadeIn(0.5).play();
             }
         }
-    }, [animationName, actions]);
+    }
 
-    // Center the camera on the model
+    useEffect(() => {
+        transition();
+    }, [actions]);
+
     useEffect(() => {
         if (modelRef.current) {
             const box = new Box3().setFromObject(modelRef.current);
             const center = box.getCenter(new Vector3());
 
-            // camera.position.set(center.x, center.y + 0.2, center.z + 1.6);
             camera.position.set(center.x, center.y + 0.5, center.z + 2.5);
-            // camera.fov = 10;
             center.y += 0.25;
             camera.lookAt(center);
         }
