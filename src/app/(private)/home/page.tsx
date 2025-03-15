@@ -14,7 +14,7 @@ export default function Component() {
 				<div className="flex w-full items-top justify-center py-24 z-50">
 					<div className="flex w-full max-w-xl flex-col items-center gap-8">
 						<h1 className="text-3xl font-black leading-9 text-white tracking-tight">
-							What's on your mind today?
+							{`What's on your mind today?`}
 						</h1>
 						<PromptInputFullLineWithBottomActions />
 					</div>

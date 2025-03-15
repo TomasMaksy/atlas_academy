@@ -164,7 +164,7 @@ const HorizontalSteps = React.forwardRef<
 					className={cn("flex flex-row flex-nowrap w-full", colors, className)}
 				>
 					{steps?.map((step, stepIdx) => {
-						let status =
+						const status =
 							currentStep === stepIdx
 								? "active"
 								: currentStep < stepIdx
