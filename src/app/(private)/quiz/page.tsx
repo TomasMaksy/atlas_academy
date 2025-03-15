@@ -14,8 +14,8 @@ import { AnimatePresence, motion } from "framer-motion";
 const steps = [
 	{
 		title: "Hi! 👋 ",
-		title2: "I am Esme!",
-		imageUrl: "/Esme.png",
+		title2: "I am Tommy!",
+		imageUrl: "/Tommy.png",
 		color: "rgba(63, 175, 168, 1)",
 		question: "What's your name?",
 		inputText: "Enter your name",
@@ -52,7 +52,7 @@ const steps = [
 	{
 		title: "",
 		title2: "",
-		imageUrl: "/Esme.png",
+		imageUrl: "/Tommy.png",
 		color: "rgba(63, 175, 168, 1)",
 		question: "How do you typically approach challenges?",
 		options: [

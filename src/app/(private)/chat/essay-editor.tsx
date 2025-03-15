@@ -42,7 +42,7 @@ export default function EssayEditor() {
     onUpdate: ({ editor }) => {
       setEssay({
         __html: editor.getHTML(),
-        title: essay?.title || "Untitled",
+        title: essay?.title || "",
       });
     },
   });
@@ -101,7 +101,7 @@ export default function EssayEditor() {
       ) : (
         <>
           <ScrollShadow className="space-y-10 scrollbar-hidden">
-            <h1 className="text-4xl font-bold">{essay?.title || "Untitled"}</h1>
+            <h1 className="text-4xl font-bold">{essay?.title || ""}</h1>
             <EditorContent editor={editor} />
           </ScrollShadow>
           <span className="w-full flex justify-between">
@@ -162,6 +162,7 @@ export default function EssayEditor() {
                     Ask for suggestions
                   </DropdownItem>
                   <DropdownItem
+                  onPress={() => highlightText("plagiarism")}
                     // onPress={() => {
                     //   setMessages((prev) => [
                     //     ...prev,
