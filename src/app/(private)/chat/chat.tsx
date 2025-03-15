@@ -2,7 +2,7 @@ import Messages from "./messages";
 import { PromptInputFullLineComponent } from "./prompt-input-full-line";
 
 interface ChatProps {
-  setChatState: any;
+  setChatState: (state: string) => void;
 }
 
 export default function Chat({ setChatState }: ChatProps) {

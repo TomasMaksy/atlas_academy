@@ -17,7 +17,7 @@ import MessageCard from "./message-card";
 interface MessagesProps {
   id: string;
   initialMessages: Array<Message>;
-  setChatState: any;
+  setChatState: (state: string) => void;
 }
 
 export default function Messages({ id, initialMessages, setChatState }: MessagesProps) {
@@ -44,7 +44,7 @@ export default function Messages({ id, initialMessages, setChatState }: Messages
         prevMessages.filter((message) => message.id !== "loading")
       );
     }
-  }, [setMessages, status]);
+  }, [setMessages, status, setChatState]);
 
   const processFile = (selectedFile: File) => {
     setFile(selectedFile);

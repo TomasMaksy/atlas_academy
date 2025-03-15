@@ -6,7 +6,7 @@ import AnimatedModel from "./animated-model";
 import { Vector3 } from "three";
 
 interface CharacterProps {
-    chatState: any;
+    chatState: string;
 }
 
 export default function Character({ chatState }: CharacterProps) {
@@ -41,7 +41,7 @@ export default function Character({ chatState }: CharacterProps) {
     return (
         <div className="">
             {/* Animation Buttons */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+            {/* <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
                 {["Idle", "Wave", "Think", "Text"].map((anim) => (
                     <button
                         key={anim}
@@ -54,7 +54,7 @@ export default function Character({ chatState }: CharacterProps) {
                         {anim}
                     </button>
                 ))}
-            </div>
+            </div> */}
 
             {/* Transparent 3D Scene */}
             <Canvas ref={canvasRef} className=" aspect-square" gl={{ antialias: true, alpha: true }} camera={{ fov: 30 }}>
