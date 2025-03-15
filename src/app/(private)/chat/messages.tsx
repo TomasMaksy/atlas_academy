@@ -11,8 +11,8 @@ import {
   Spinner,
 } from "@heroui/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import MessageCard from "./message-card";
 import { useEffect, useRef, useState } from "react";
+import MessageCard from "./message-card";
 
 interface MessagesProps {
   id: string;
@@ -142,16 +142,27 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
       </div>
     </motion.div>
   ) : (
+    // return (
     <ScrollShadow className="flex h-full max-h-[80vh] flex-col gap-6 overflow-y-auto p-6 pb-8">
-      {messages.map((message, index) => (
-        <MessageCard
-          key={index}
-          role={message.role}
-          loading={message.id === "loading"}
-          failed={message.id === "error"}
-          message={message.content}
-        />
+      {messages.map((message, id) => (
+        <MessageCard message={message} key={id} />
       ))}
+      {/* <MessageCard
+        message={{
+          role: "assistant",
+          parts: [
+            {
+              type: "tool-invocation",
+              toolInvocation: {
+                toolCallId: "toolCallId",
+                // state: "result",
+                result: "Complete",
+              },
+            },
+          ],
+        }}
+        key={id}
+      /> */}
     </ScrollShadow>
   );
 }
