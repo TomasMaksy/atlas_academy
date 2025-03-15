@@ -2,7 +2,6 @@ import "server-only";
 
 import { eq } from "drizzle-orm";
 
-
 import { db } from "./main";
 import { essayTable, InsertUserData, userDataTable } from "./schema";
 
@@ -124,10 +123,10 @@ export async function getEssayById({ id }: { id: string }) {
 
 export async function saveUserData(data: InsertUserData) {
   try {
-    return await db
-      .update(userDataTable)
-      .set(data)
-      .where(eq(userDataTable.id, data.id));
+    return await db.insert(userDataTable).values(data).onConflictDoUpdate({
+      target: userDataTable.id,
+      set: data,
+    });
   } catch (error) {
     console.error("Failed to save user in database");
     throw error;

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Character from "./character";
 
 import "./styles.css";
 import Chat from "./chat";
@@ -11,6 +10,7 @@ import EssayEditor from "./essay-editor";
 
 import { SidebarProvider } from "./sidebar-context";
 import { Button } from "@heroui/react";
+import Character from "@/components/character/character";
 
 export default function Page() {
   const [chatState, setChatState] = useState("");
@@ -28,12 +28,7 @@ export default function Page() {
 
                 <div className="flex flex-col items-center">
                   <>
-                    {/* <Image
-                    src="/Tommy.png"
-                    alt="Agent"
-                    className="w-40 object-cover rounded-full"
-                  /> */}
-                    <Character chatState={chatState}></Character>
+                    <Character chatState={chatState} closeup={true} model={"/models/esme.glb"} talk={false}></Character>
                     <Button className="w-full mt-0 py-3 text-xl font-bold bg-white text-[#3fafa8]">
                       + New Chat
                     </Button>

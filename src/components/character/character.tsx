@@ -7,9 +7,12 @@ import { Vector3 } from "three";
 
 interface CharacterProps {
   chatState: string;
+  closeup: boolean;
+  model: string;
+  talk: boolean;
 }
 
-export default function Character({ chatState }: CharacterProps) {
+export default function Character({ chatState, closeup, model, talk }: CharacterProps) {
   const [animation, setAnimation] = useState("");
   const [rotation, setRotation] = useState(new Vector3());
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -34,15 +37,14 @@ export default function Character({ chatState }: CharacterProps) {
 
   useEffect(() => {
     if (chatState == "submitted") setAnimation("Think");
-    else if (chatState == "streaming") setAnimation("Text");
+    else if (chatState == "streaming") setAnimation(talk ? "Talk" : "Text");
     else setAnimation("Idle");
   }, [chatState]);
 
   return (
     <div className="">
-      {/* Animation Buttons */}
       {/* <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
-                {["Idle", "Wave", "Think", "Text"].map((anim) => (
+                {["Idle", "Wave", "Think", "Text", "Talk"].map((anim) => (
                     <button
                         key={anim}
                         className={`px-4 py-2 rounded-lg font-semibold transition ${animation === anim
@@ -56,7 +58,6 @@ export default function Character({ chatState }: CharacterProps) {
                 ))}
             </div> */}
 
-      {/* Transparent 3D Scene */}
       <Canvas
         ref={canvasRef}
         className=" aspect-square"
@@ -66,9 +67,7 @@ export default function Character({ chatState }: CharacterProps) {
         <ambientLight intensity={1} />
         <directionalLight position={[5, 5, 5]} intensity={2} />
         <directionalLight position={[-2.5, 2.5, -5]} intensity={10} />
-        <AnimatedModel animationName={animation} rotation={rotation} />
-
-        {/* <OrbitControls /> */}
+        <AnimatedModel animationName={animation} rotation={rotation} closeup={closeup} model={model} />
       </Canvas>
     </div>
   );
