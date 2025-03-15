@@ -15,13 +15,13 @@ export const CustomCheckbox = ({ color, ...props }: CustomCheckboxProps) => {
 	console.log(color);
 	const checkbox = tv({
 		slots: {
-			base: "hover:bg-default-100 bg-default-200",
-			content: "text-default-500",
+			base: "hover:bg-default-100 bg-white/60",
+			content: "text-default-600 font-semibold",
 		},
 		variants: {
 			isSelected: {
 				true: {
-					base: `border-white border-1 bg-[#C9D843]/90 hover:[#C9D843]/100 `,
+					base: `border-white border-3 bg-white hover:bg-white/80`,
 					content: "text-primary-foreground pl-1",
 				},
 			},
