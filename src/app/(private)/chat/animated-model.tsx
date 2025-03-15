@@ -4,6 +4,7 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { Group, Box3, Vector3, AnimationClip } from "three";
 import { useFrame, useThree } from "@react-three/fiber";
+import { delay } from "framer-motion";
 
 type GLTFResult = {
     scene: Group;
@@ -17,66 +18,50 @@ interface AnimatedModelProps {
 
 export default function AnimatedModel({ animationName, rotationY }: AnimatedModelProps) {
     const modelRef = useRef<Group>(null);
-    // const canvasRef = useRef<HTMLDivElement | null>(null);
 
     const { scene, animations } = useGLTF("/models/character.glb") as GLTFResult;
     const { actions } = useAnimations(animations, modelRef);
     const { camera } = useThree();
 
-    const targetAnimation = useRef("");
-    const currentAnimation = useRef("");
-    const readyTimeout = useRef<NodeJS.Timeout | null>(null);
+    const currentAnimation = useRef("Wave");
+    const readyTime = useRef(3);
 
-    // const mousePos = useRef({ x: 0, y: 0 });
+    function easeOutBack(x: number): number {
+        const c1 = 1.70158;
+        const c3 = c1 + 1;
 
-    useEffect(() => {
+        return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
 
+    }
 
-        // const handleMouseMove = (event: MouseEvent) => {
-        //     if (!canvasRef.current) return;
+    function clamp(x: number, min: number, max: number) {
+        if (x < min) return min;
+        if (x > max) return max;
+        return x;
+    }
 
-        //     const rect = canvasRef.current.getBoundingClientRect(); // Get canvas position
-        //     const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        //     const y = ((event.clientY - rect.top) / rect.height) * 2 - 1;
-        //     mousePos.current = { x, y };
-        // };
+    function lerp(a: number, b: number, t: number) {
+        return (b - a) * t + a;
+    }
 
-        // window.addEventListener("mousemove", handleMouseMove);
-        // return () => window.removeEventListener("mousemove", handleMouseMove);
+    function damp(a: number, b: number, lambda: number, dt: number) {
+        return lerp(a, b, 1 - Math.exp(-lambda * dt));
+    }
 
-        if (currentAnimation.current) return;
-        targetAnimation.current = "Wave";
-        updateAnimation();
+    useFrame(({ clock }, delta) => {
+        if (currentAnimation.current != animationName && clock.elapsedTime >= readyTime.current) {
+            currentAnimation.current = animationName;
+            readyTime.current = clock.elapsedTime + 1;
+            transition();
+        }
 
-    }, []);
-
-    useFrame(() => {
-        // if (modelRef.current) {
-        //     const targetX = mousePos.current.x * Math.PI * 0.2; // Control rotation sensitivity
-        //     modelRef.current.rotation.set(0, targetX, 0);
-        // }
         if (modelRef.current) {
-            modelRef.current.rotation.y = rotationY;
+            const targetRotation = currentAnimation.current == "Idle" || currentAnimation.current == "Wave" ? rotationY : 0;
+            modelRef.current.rotation.y = damp(modelRef.current.rotation.y, targetRotation, 10, delta);
+
+            modelRef.current.position.y = (easeOutBack(clamp(clock.elapsedTime - 0.25, 0, 1)) - 1) * 1.5;
         }
     });
-
-    useEffect(() => {
-        targetAnimation.current = animationName;
-        if (readyTimeout.current != null) return;
-        updateAnimation();
-
-    }, [animationName]);
-
-    const updateAnimation = () => {
-        if (currentAnimation.current == targetAnimation.current) {
-            readyTimeout.current = null;
-        } else {
-            currentAnimation.current = targetAnimation.current;
-            transition();
-            let delay = targetAnimation.current == "Wave" ? 3000 : 1000;
-            readyTimeout.current = setTimeout(() => { updateAnimation(); }, delay);
-        }
-    }
 
     const transition = () => {
         if (actions) {
@@ -96,12 +81,8 @@ export default function AnimatedModel({ animationName, rotationY }: AnimatedMode
 
     useEffect(() => {
         if (modelRef.current) {
-            const box = new Box3().setFromObject(modelRef.current);
-            const center = box.getCenter(new Vector3());
-
-            camera.position.set(center.x, center.y + 0.5, center.z + 2.5);
-            center.y += 0.25;
-            camera.lookAt(center);
+            camera.position.set(0, 1.2, 2.5);
+            camera.lookAt(new Vector3(0, 1, 0));
         }
     }, [camera]);
 
