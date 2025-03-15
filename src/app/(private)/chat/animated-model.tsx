@@ -4,7 +4,6 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { Group, Box3, Vector3, AnimationClip } from "three";
 import { useFrame, useThree } from "@react-three/fiber";
-import { delay } from "framer-motion";
 
 type GLTFResult = {
     scene: Group;
@@ -13,10 +12,12 @@ type GLTFResult = {
 
 interface AnimatedModelProps {
     animationName: string;
-    rotationY: number;
+    rotation: Vector3;
 }
 
-export default function AnimatedModel({ animationName, rotationY }: AnimatedModelProps) {
+const ZERO = new Vector3();
+
+export default function AnimatedModel({ animationName, rotation }: AnimatedModelProps) {
     const modelRef = useRef<Group>(null);
 
     const { scene, animations } = useGLTF("/models/character.glb") as GLTFResult;
@@ -31,7 +32,6 @@ export default function AnimatedModel({ animationName, rotationY }: AnimatedMode
         const c3 = c1 + 1;
 
         return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
-
     }
 
     function clamp(x: number, min: number, max: number) {
@@ -56,8 +56,10 @@ export default function AnimatedModel({ animationName, rotationY }: AnimatedMode
         }
 
         if (modelRef.current) {
-            const targetRotation = currentAnimation.current == "Idle" || currentAnimation.current == "Wave" ? rotationY : 0;
-            modelRef.current.rotation.y = damp(modelRef.current.rotation.y, targetRotation, 10, delta);
+            const targetRotation = currentAnimation.current == "Idle" || currentAnimation.current == "Wave" ? rotation : ZERO;
+            modelRef.current.rotation.x = damp(modelRef.current.rotation.x, targetRotation.x, 10, delta);
+            modelRef.current.rotation.y = damp(modelRef.current.rotation.y, targetRotation.y, 10, delta);
+            modelRef.current.rotation.order = "ZYX";
 
             modelRef.current.position.y = (easeOutBack(clamp(clock.elapsedTime - 0.25, 0, 1)) - 1) * 1.5;
         }

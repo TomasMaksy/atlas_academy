@@ -3,6 +3,7 @@
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import AnimatedModel from "./animated-model";
+import { Vector3 } from "three";
 
 interface CharacterProps {
     chatState: any;
@@ -10,7 +11,7 @@ interface CharacterProps {
 
 export default function Character({ chatState }: CharacterProps) {
     const [animation, setAnimation] = useState("");
-    const [rotation, setRotation] = useState(0);
+    const [rotation, setRotation] = useState(new Vector3());
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
@@ -19,8 +20,12 @@ export default function Character({ chatState }: CharacterProps) {
 
             const rect = canvasRef.current.getBoundingClientRect();
             const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-            const r = Math.PI * 0.5 - Math.atan2(15, x);
-            setRotation(r);
+            const y = ((event.clientY - rect.top) / rect.width) * 2 - 1;
+
+            const rx = Math.PI * 0.5 - Math.atan2(30, y);
+            const ry = Math.PI * 0.5 - Math.atan2(15, x);
+
+            setRotation(new Vector3(rx, ry));
         };
 
         window.addEventListener("mousemove", handleMouseMove);
@@ -56,7 +61,7 @@ export default function Character({ chatState }: CharacterProps) {
                 <ambientLight intensity={1} />
                 <directionalLight position={[5, 5, 5]} intensity={2} />
                 <directionalLight position={[-2.5, 2.5, -5]} intensity={10} />
-                <AnimatedModel animationName={animation} rotationY={rotation} />
+                <AnimatedModel animationName={animation} rotation={rotation} />
 
                 {/* <OrbitControls /> */}
             </Canvas>
