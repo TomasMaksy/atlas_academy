@@ -1,19 +1,51 @@
+import { type Message, createDataStreamResponse, streamText } from "ai";
+
+import { NextResponse } from "next/server";
 import { openai } from "@ai-sdk/openai";
-import { streamText } from "ai";
+import { systemPrompt } from "@/lib/ai/prompts";
+import { createEssay } from "@/lib/ai/tools/create-essay";
 
-const model = "o3-mini";
+const model = openai("gpt-4o");
 
-// Allow streaming responses up to 30 seconds
-export const maxDuration = 30;
+export const maxDuration = 60;
 
-export async function POST(req: Request) {
-  const { messages } = await req.json();
+export async function POST(request: Request) {
+  try {
+    const {
+      essay,
+      messages,
+    }: {
+      essay: string | null;
+      messages: Array<Message>;
+    } = await request.json();
 
-  const result = streamText({
-    model: openai(model),
-    system: "You are a helpful assistant.",
-    messages,
-  });
+    return createDataStreamResponse({
+      execute: (dataStream) => {
+        const result = streamText({
+          model,
+          system: systemPrompt,
+          messages,
+          maxSteps: 5,
+          experimental_activeTools: essay ? [] : ["createEssay"],
+          tools: {
+            createEssay: createEssay({ dataStream }),
+            // rewriteEssay: rewriteEssay({ dataStream }),
+            // requestSuggestions: requestSuggestions({ dataStream }),
+            // requestAntiAiSuggest: requestAntiAiSuggest({ dataStream }),
+          },
+        });
 
-  return result.toDataStreamResponse();
+        result.consumeStream();
+
+        result.mergeIntoDataStream(dataStream, {
+          sendReasoning: true,
+        });
+      },
+      onError: () => {
+        return "Oops, an error occured!";
+      },
+    });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 400 });
+  }
 }
