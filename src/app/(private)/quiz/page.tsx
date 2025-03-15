@@ -81,7 +81,6 @@ const Quiz = () => {
 			[field]: e.target.value,
 		}));
 	};
-
 	console.log(formValues);
 	//SWITCHING BETWEEN PAGES//
 	useEffect(() => {
