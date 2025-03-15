@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AnimatedModel from "./animated-model";
 
 interface CharacterProps {
@@ -10,6 +10,22 @@ interface CharacterProps {
 
 export default function Character({ chatState }: CharacterProps) {
     const [animation, setAnimation] = useState("");
+    const [rotation, setRotation] = useState(0);
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+    useEffect(() => {
+        const handleMouseMove = (event: MouseEvent) => {
+            if (!canvasRef.current) return;
+
+            const rect = canvasRef.current.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            const r = Math.PI * 0.5 - Math.atan2(15, x);
+            setRotation(r);
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, []);
 
     useEffect(() => {
         if (chatState == "submitted") setAnimation("Think");
@@ -36,11 +52,11 @@ export default function Character({ chatState }: CharacterProps) {
             </div>
 
             {/* Transparent 3D Scene */}
-            <Canvas className=" aspect-square" gl={{ antialias: true, alpha: true }} camera={{ fov: 30 }}>
+            <Canvas ref={canvasRef} className=" aspect-square" gl={{ antialias: true, alpha: true }} camera={{ fov: 30 }}>
                 <ambientLight intensity={1} />
                 <directionalLight position={[5, 5, 5]} intensity={2} />
                 <directionalLight position={[-2.5, 2.5, -5]} intensity={10} />
-                <AnimatedModel animationName={animation} />
+                <AnimatedModel animationName={animation} rotationY={rotation} />
 
                 {/* <OrbitControls /> */}
             </Canvas>

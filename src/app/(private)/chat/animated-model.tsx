@@ -3,7 +3,7 @@
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { Group, Box3, Vector3, AnimationClip } from "three";
-import { useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 
 type GLTFResult = {
     scene: Group;
@@ -12,10 +12,13 @@ type GLTFResult = {
 
 interface AnimatedModelProps {
     animationName: string;
+    rotationY: number;
 }
 
-export default function AnimatedModel({ animationName }: AnimatedModelProps) {
+export default function AnimatedModel({ animationName, rotationY }: AnimatedModelProps) {
     const modelRef = useRef<Group>(null);
+    // const canvasRef = useRef<HTMLDivElement | null>(null);
+
     const { scene, animations } = useGLTF("/models/character.glb") as GLTFResult;
     const { actions } = useAnimations(animations, modelRef);
     const { camera } = useThree();
@@ -24,11 +27,38 @@ export default function AnimatedModel({ animationName }: AnimatedModelProps) {
     const currentAnimation = useRef("");
     const readyTimeout = useRef<NodeJS.Timeout | null>(null);
 
+    // const mousePos = useRef({ x: 0, y: 0 });
+
     useEffect(() => {
+
+
+        // const handleMouseMove = (event: MouseEvent) => {
+        //     if (!canvasRef.current) return;
+
+        //     const rect = canvasRef.current.getBoundingClientRect(); // Get canvas position
+        //     const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        //     const y = ((event.clientY - rect.top) / rect.height) * 2 - 1;
+        //     mousePos.current = { x, y };
+        // };
+
+        // window.addEventListener("mousemove", handleMouseMove);
+        // return () => window.removeEventListener("mousemove", handleMouseMove);
+
         if (currentAnimation.current) return;
         targetAnimation.current = "Wave";
         updateAnimation();
+
     }, []);
+
+    useFrame(() => {
+        // if (modelRef.current) {
+        //     const targetX = mousePos.current.x * Math.PI * 0.2; // Control rotation sensitivity
+        //     modelRef.current.rotation.set(0, targetX, 0);
+        // }
+        if (modelRef.current) {
+            modelRef.current.rotation.y = rotationY;
+        }
+    });
 
     useEffect(() => {
         targetAnimation.current = animationName;
