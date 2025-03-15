@@ -18,9 +18,10 @@ import MessageCard from "./message-card";
 interface MessagesProps {
   id: string;
   initialMessages: Array<Message>;
+  setChatState: (state: string) => void;
 }
 
-export default function Messages({ id, initialMessages }: MessagesProps) {
+export default function Messages({ id, initialMessages, setChatState }: MessagesProps) {
   const { messages, status, setMessages, append } = useChat({
     id,
     initialMessages,
@@ -33,6 +34,7 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    setChatState(status);
     if (status === "submitted") {
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -43,7 +45,7 @@ export default function Messages({ id, initialMessages }: MessagesProps) {
         prevMessages.filter((message) => message.id !== "loading")
       );
     }
-  }, [setMessages, status]);
+  }, [setMessages, status, setChatState]);
 
   const processFile = (selectedFile: File) => {
     setFile(selectedFile);

@@ -12,8 +12,8 @@ import { FormValues } from "@/app/(private)/types";
 const steps = [
 	{
 		title: "Hi! 👋 ",
-		title2: "I am Esme!",
-		imageUrl: "/Esme.png",
+		title2: "I am Tommy!",
+		imageUrl: "/Tommy.png",
 		question: "What's your name?",
 		inputText: "Enter your name",
 		color: "rgba(63, 175, 168, 1)",
@@ -40,7 +40,7 @@ const steps = [
 	{
 		title: "Step 4",
 		title2: "Random text! 👋 ",
-		imageUrl: "/Esme.png",
+		imageUrl: "/Tommy.png",
 		question: "What is your name?",
 		inputText: "Enter your name",
 		color: "rgba(63, 175, 168, 1)",

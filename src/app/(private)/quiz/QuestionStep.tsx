@@ -62,7 +62,7 @@ export default function QuestionStep({
 					{/* Steppers */}
 
 					{/* Image */}
-					<div className="absolute flex items-center justify-center w-full z-0 mt-40 flex-col ">
+					<div className="absolute flex items-center justify-center w-full h-full z-0 mt-40 flex-col ">
 						<div
 							className={`${pacifico.className} font-semibold text-9xl text-white text-wrap whitespace-pre-line text-center z-0  text-white/50`}
 						>
