@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { Button } from "@heroui/button";
 import { Icon } from "@iconify/react";
 import { PromptInputFullLineComponent } from "./prompt-input-full-line";
-import { Card, cn, Link } from "@heroui/react";
+import { Card, cn } from "@heroui/react";
 import { useChat } from "@ai-sdk/react";
 import DeadlineCard from "./components/deadline-card";
 import ProgressCard from "./components/progress-card";
@@ -138,15 +138,13 @@ export default function MainChat() {
         </Card>
       </div>
       <div className=" flex md:flex-row sm:flex-col justify-center gap-8 text-[#08010e] mx-4  mb-12">
-        <Link href="/quiz" className="w-full">
-          <AgentCard
-            higlighted={messages.length > 1}
-            color="#3fafa8,#1af9ea"
-            character="Esme"
-            title="Common Essay Writer"
-            imageSrc="/Esme.png"
-          />
-        </Link>
+        <AgentCard
+          higlighted={messages.length > 1}
+          color="#3fafa8,#1af9ea"
+          character="Esme"
+          title="Common Essay Writer"
+          imageSrc="/Esme.png"
+        />
         <AgentCard
           color="#c9d843,#d6e07e"
           character="Irven"

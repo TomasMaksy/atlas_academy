@@ -2,7 +2,8 @@ import "server-only";
 
 import { eq } from "drizzle-orm";
 
-import { drizzle } from "drizzle-orm/better-sqlite3";
+
+import { db } from "./main";
 import { essayTable, InsertUserData, userDataTable } from "./schema";
 
 // import {
@@ -24,15 +25,12 @@ import { essayTable, InsertUserData, userDataTable } from "./schema";
 
 // biome-ignore lint: Forbidden non-null assertion.
 
-export const db = drizzle({
-  connection: {
-    source: "src/lib/db/sqlite.db",
-  },
-});
-
 export async function getUserData() {
   try {
-    const [userData] = await db.select().from(userDataTable).where(eq(userDataTable.id, "randomId"));
+    const [userData] = await db
+      .select()
+      .from(userDataTable)
+      .where(eq(userDataTable.id, "randomId"));
     return userData;
   } catch (error) {
     console.error("Failed to get user from database");
@@ -125,10 +123,11 @@ export async function getEssayById({ id }: { id: string }) {
 }
 
 export async function saveUserData(data: InsertUserData) {
-  
-
   try {
-    return await db.update(userDataTable).set(data).where(eq(userDataTable.id, data.id));
+    return await db
+      .update(userDataTable)
+      .set(data)
+      .where(eq(userDataTable.id, data.id));
   } catch (error) {
     console.error("Failed to save user in database");
     throw error;

@@ -3,11 +3,13 @@ import { defineConfig } from "drizzle-kit";
 
 config({ path: ".env.local" });
 
+
+
 export default defineConfig({
-  dialect: "sqlite",
+  dialect: "postgresql",
   schema: ["src/lib/db/schema.ts"],
   out: "./src/lib/db/migrations",
   dbCredentials: {
-    url: "./src/lib/db/sqlite.db",
+    url: process.env.POSTGRES_URL_NO_SSL!,
   },
 });

@@ -1,6 +1,5 @@
 import { InferInsertModel, InferSelectModel } from "drizzle-orm";
-
-import { sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { pgTable, text } from "drizzle-orm/pg-core";
 
 // export const chatTable = sqliteTable("chat", {
 //   id: text().primaryKey(),
@@ -8,7 +7,7 @@ import { sqliteTable, text } from "drizzle-orm/sqlite-core";
 //   createdAt: integer({ mode: "timestamp_ms" }),
 // });
 
-export const essayTable = sqliteTable("essay", {
+export const essayTable = pgTable("essay", {
   id: text().primaryKey(),
   title: text().notNull(),
   html: text().notNull(),
@@ -26,7 +25,7 @@ export const essayTable = sqliteTable("essay", {
 
 // export type Message = InferSelectModel<typeof messageTable>;
 
-export const userDataTable = sqliteTable("user_data", {
+export const userDataTable = pgTable("user_data", {
   id: text().primaryKey(),
   name: text().notNull(),
   friendDescriptions: text().notNull(),
