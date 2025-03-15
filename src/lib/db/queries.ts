@@ -24,7 +24,11 @@ import { essayTable, userDataTable } from "./schema";
 
 // biome-ignore lint: Forbidden non-null assertion.
 
-export const db = drizzle(import.meta.url);
+export const db = drizzle({
+  connection: {
+    source: "src/lib/db/sqlite.db",
+  },
+});
 
 export async function getUserData() {
   try {
@@ -111,6 +115,8 @@ export async function getEssayById({ id }: { id: string }) {
       .select()
       .from(essayTable)
       .where(eq(essayTable.id, id));
+
+    console.log("Essay fetched", essay);
     return essay;
   } catch (error) {
     console.error("Failed to get document by id from database");
