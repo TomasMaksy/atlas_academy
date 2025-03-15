@@ -1,7 +1,6 @@
 "use client";
 
-import CharacterCall from "./character-call";
-
+// import CharacterCall from "./character-call";
 
 import Character from "@/components/character/character";
 
@@ -15,8 +14,13 @@ export default function AgentSidebar() {
           </div>
           <p className="text-2xl font-semibold">Interview Specialist</p>
         </div>
-        <CharacterCall chatState={""}></CharacterCall>
-        <Character chatState={""} closeup={false} model={"/models/guido.glb"} talk={true}></Character>
+        {/* <CharacterCall chatState={""}></CharacterCall> */}
+        <Character
+          chatState={""}
+          closeup={false}
+          model={"/models/guido.glb"}
+          talk={true}
+        ></Character>
       </div>
     </div>
   );

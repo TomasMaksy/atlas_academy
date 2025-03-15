@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Image, Input, Textarea, Tooltip } from "@heroui/react";
+import { Button, Image, Input, Textarea } from "@heroui/react";
 
 import { Pacifico } from "next/font/google";
 
