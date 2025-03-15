@@ -149,20 +149,20 @@ export default function MainChat() {
           color="#c9d843,#d6e07e"
           character="Irven"
           title="Interview Specialist"
-          imageSrc="/esme_2.png"
-        />
-        <AgentCard
-          color="#6c5b7b,#7e2ec4"
-          character="Guido"
-          title="University Guide"
-          imageSrc="/esme_3.png"
+          imageSrc="/irven_2.png"
         />
         <AgentCard
           //   color red gradient with 2 different colors
-          color="#ff4d4d,#ff0000"
+          color="#6c5b7b,#7e2ec4"
           character="Milo"
           title="Interview Specialist"
-          imageSrc="esme_4.png"
+          imageSrc="/guido_3.png"
+        />
+        <AgentCard
+          color="#ff4d4d,#ff0000"
+          character="Guido"
+          title="University Guide"
+          imageSrc="milo_4.png"
         />
       </div>
     </>
