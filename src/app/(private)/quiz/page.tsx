@@ -299,7 +299,7 @@ const Quiz = () => {
 			if (!response.ok) {
 				throw new Error("Failed to submit form");
 			} else {
-				router.push("/home"); // Redirect to /chat after the last step
+				router.push("/chat"); // Redirect to /chat after the last step
 			}
 		} else {
 			setCurrentStep(step);
