@@ -13,6 +13,8 @@ type GLTFResult = {
 interface AnimatedModelProps {
     animationName: string;
     rotation: Vector3;
+    closeup: boolean;
+    model: string;
 }
 
 function easeOutBack(x: number): number {
@@ -36,10 +38,10 @@ function damp(a: number, b: number, lambda: number, dt: number) {
     return lerp(a, b, 1 - Math.exp(-lambda * dt));
 }
 
-export default function AnimatedModel({ animationName, rotation }: AnimatedModelProps) {
+export default function AnimatedModel({ animationName, rotation, closeup, model }: AnimatedModelProps) {
     const modelRef = useRef<Group>(null);
 
-    const { scene, animations } = useGLTF("/models/character.glb") as GLTFResult;
+    const { scene, animations } = useGLTF(model) as GLTFResult;
     const { actions } = useAnimations(animations, modelRef);
     const { camera } = useThree();
 
@@ -56,7 +58,7 @@ export default function AnimatedModel({ animationName, rotation }: AnimatedModel
         }
 
         if (modelRef.current) {
-            const targetStrength = currentAnimation.current == "Wave" || currentAnimation.current == "Idle" ? 1 : 0;
+            const targetStrength = currentAnimation.current == "Wave" || currentAnimation.current == "Idle" || currentAnimation.current == "Talk" ? 1 : 0;
             rotationStrength.current = damp(rotationStrength.current, targetStrength, 5, delta);
 
             const targetRotation = rotation.clone().multiplyScalar(rotationStrength.current);
@@ -86,10 +88,15 @@ export default function AnimatedModel({ animationName, rotation }: AnimatedModel
 
     useEffect(() => {
         if (modelRef.current) {
-            camera.position.set(0, 1.2, 2.5);
-            camera.lookAt(new Vector3(0, 1, 0));
+            if (closeup) {
+                camera.position.set(0, 1.2, 2.5);
+                camera.lookAt(new Vector3(0, 1, 0));
+            } else {
+                camera.position.set(0, 1, 3.5);
+                camera.lookAt(new Vector3(0, 0.8, 0));
+            }
         }
-    }, [camera]);
+    }, [camera, closeup]);
 
     return <primitive ref={modelRef} object={scene} scale={1} />;
 }

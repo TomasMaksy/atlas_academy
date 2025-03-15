@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Character from "./character";
 import "./styles.css";
 import Chat from "./chat";
 import Cover from "./cover";
 import EssayEditor from "./essay-editor";
 import { Badge, Button, Image, Link } from "@heroui/react";
+import Character from "@/components/character/character";
 
 export default function Page() {
   const [chatState, setChatState] = useState("");
@@ -25,17 +25,14 @@ export default function Page() {
             </div>
             <p className="text-sm font-semibold">CommonApp Essay Writer</p>
 
-            <div className="flex flex-col items-center">
-              <>
-                <Character chatState={chatState} />
-                <Button
-                  onPress={toggleGuido}
-                  className="w-full mt-0 py-3 text-xl font-bold bg-white text-[#3fafa8]"
-                >
-                  + New Chat
-                </Button>
-              </>
-            </div>
+                <div className="flex flex-col items-center">
+                  <>
+                    <Character chatState={chatState} closeup={true} model={"/models/esme.glb"} talk={false}></Character>
+                    <Button className="w-full mt-0 py-3 text-xl font-bold bg-white text-[#3fafa8]">
+                      + New Chat
+                    </Button>
+                  </>
+                </div>
 
             <div className="flex flex-col gap-4 mt-6">
               <h2 className="text-xl font-bold">History</h2>
