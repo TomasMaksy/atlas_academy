@@ -5,7 +5,6 @@ import PromptInputFullLineWithBottomActions from "./prompt-input-full-line-with-
 import AgentCard from "./components/agent-card";
 import ProgressCard from "@/app/(private)/home/components/progress-card";
 import DeadlineCard from "./components/deadline-card";
-import Link from "next/link";
 
 export default function Component() {
 	return (
