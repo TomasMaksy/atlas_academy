@@ -7,13 +7,13 @@ import { Icon } from "@iconify/react";
 export default function ApplicationProgressCard() {
 	const data = {
 		title: "Application Progress",
-		value: 38,
+		value: 27,
 		status: "good",
 		iconName: "solar:checklist-minimalistic-outline",
 	};
 
 	return (
-		<Card className="flex flex-col border border-transparent p-4 flex-grow">
+		<Card className="flex flex-col p-4 flex-grow">
 			<div
 				className={cn(
 					"flex h-8 w-8 items-center justify-center rounded-md border p-0.5",
