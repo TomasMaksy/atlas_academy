@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ai-sdk/openai": "^1.2.4",
+    "@ai-sdk/openai": "^1.2.5",
     "@heroui/react": "^2.7.5",
     "@heygen/streaming-avatar": "^2.0.10",
     "@iconify/react": "^5.2.0",
@@ -24,8 +24,7 @@
     "@tiptap/react": "^2.11.5",
     "@tiptap/starter-kit": "^2.11.5",
     "@vercel/postgres": "^0.10.0",
-    "ahooks": "^3.8.4",
-    "ai": "^4.1.60",
+    "ai": "^4.1.61",
     "better-sqlite3": "^11.9.0",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.40.0",
