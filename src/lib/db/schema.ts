@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import { InferSelectModel } from "drizzle-orm";
+=======
+import { InferInsertModel } from "drizzle-orm";
+>>>>>>> Stashed changes
 import { sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 // export const chatTable = sqliteTable("chat", {
@@ -44,4 +48,8 @@ export const userDataTable = sqliteTable("user_data", {
   digDeeper: text().notNull(),
 });
 
+<<<<<<< Updated upstream
 export type UserData = InferSelectModel<typeof userDataTable>;
+=======
+export type InsertUserData = InferInsertModel<typeof userDataTable>;
+>>>>>>> Stashed changes

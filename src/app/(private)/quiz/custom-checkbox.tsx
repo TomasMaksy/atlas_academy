@@ -5,20 +5,23 @@ interface CustomCheckboxProps {
 	children?: React.ReactNode;
 	isSelected?: boolean;
 	isFocusVisible?: boolean;
+	// ignore eslint
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	[key: string]: any;
 	color: string;
 }
 
 export const CustomCheckbox = ({ color, ...props }: CustomCheckboxProps) => {
+	console.log(color);
 	const checkbox = tv({
 		slots: {
-			base: "border-default hover:bg-default-200",
+			base: "hover:bg-default-100 bg-default-200",
 			content: "text-default-500",
 		},
 		variants: {
 			isSelected: {
 				true: {
-					base: `border-[${color}] bg-[${color}] hover:bg-[${color}-500] hover:border-[${color}-500]`,
+					base: `border-white border-1 bg-[#C9D843]/90 hover:[#C9D843]/100 `,
 					content: "text-primary-foreground pl-1",
 				},
 			},
@@ -46,18 +49,20 @@ export const CustomCheckbox = ({ color, ...props }: CustomCheckboxProps) => {
 			<VisuallyHidden>
 				<input {...getInputProps()} />
 			</VisuallyHidden>
-			<Chip
-				classNames={{
-					base: styles.base(),
-					content: styles.content(),
-				}}
-				color="primary"
-				startContent={isSelected ? <CheckIcon className="ml-1" /> : null}
-				variant="faded"
-				{...getLabelProps()}
-			>
-				{children ? children : isSelected ? "Enabled" : "Disabled"}
-			</Chip>
+			<div className="flex-grow justify-center items-center">
+				<Chip
+					classNames={{
+						base: styles.base(),
+						content: styles.content(),
+					}}
+					color="primary"
+					startContent={isSelected ? <CheckIcon className="ml-1" /> : null}
+					variant="flat"
+					{...getLabelProps()}
+				>
+					{children ? children : isSelected ? "Enabled" : "Disabled"}
+				</Chip>
+			</div>
 		</label>
 	);
 };

@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 import { FormValues } from "@/app/(private)/types";
 
-export const steps = [
+const steps = [
 	{
 		title: "Hi! 👋 ",
 		title2: "I am Esme!",
@@ -20,8 +20,8 @@ export const steps = [
 		field: "name" as keyof FormValues,
 	},
 	{
-		title: "Step 2",
-		title2: "Iisdiwn! 👋 ",
+		title: "Let's get to know you!",
+		title2: "",
 		imageUrl: "/Irven.png",
 		question: "How would your friends describe you?",
 		inputText: "Enter your name",
@@ -81,15 +81,29 @@ const Quiz = () => {
 			[field]: e.target.value,
 		}));
 	};
+
 	console.log(formValues);
 	//SWITCHING BETWEEN PAGES//
 	useEffect(() => {
 		setBgColor(steps[currentStep].color);
 	}, [currentStep]);
 
-	const handleNextStep = (step: number) => {
+	const handleNextStep = async (step: number) => {
 		if (step >= steps.length) {
-			router.push("/chat"); // Redirect to /chat after the last step
+			// submit values to api/user
+
+			console.log(formValues);
+
+			const response = await fetch("/api/user", {
+				method: "POST",
+				body: JSON.stringify(formValues),
+			});
+
+			if (!response.ok) {
+				throw new Error("Failed to submit form");
+			} else {
+				router.push("/home"); // Redirect to /chat after the last step
+			}
 		} else {
 			setCurrentStep(step);
 		}
@@ -97,14 +111,29 @@ const Quiz = () => {
 
 	return (
 		<main
-			className="h-full w-full  transition-colors duration-1000 ease-in-out"
+			className="h-full w-full transition-colors duration-1000 ease-in-out"
 			style={{ backgroundColor: bgColor }}
 		>
+			{/* <div
+				className={`w-[200vw] transition-all duration-1000 pl-[30%]`}
+				style={{
+					transform:
+						currentStep >= steps.length / 2 ? "translateX(-50%)" : "none",
+				}}
+			>
+				<HorizontalSteps
+					currentStep={currentStep}
+					steps={steps}
+					onStepChange={handleNextStep}
+					className="w-full"
+				/>
+			</div> */}
+
 			{currentStep === 1 ? (
 				<QuestionStep2
 					currentStep={currentStep}
 					title={steps[currentStep].title}
-					title2={steps[currentStep].title2}
+					title2={formValues.name}
 					question={steps[currentStep].question}
 					imageUrl={steps[currentStep].imageUrl}
 					inputText={steps[currentStep].inputText}
@@ -131,3 +160,29 @@ const Quiz = () => {
 	);
 };
 export default Quiz;
+
+// function CheckIcon(props: ComponentProps<"svg">) {
+// 	return (
+// 		<svg
+// 			{...props}
+// 			fill="none"
+// 			stroke="currentColor"
+// 			strokeWidth={2}
+// 			viewBox="0 0 24 24"
+// 		>
+// 			<m.path
+// 				animate={{ pathLength: 1 }}
+// 				d="M5 13l4 4L19 7"
+// 				initial={{ pathLength: 0 }}
+// 				strokeLinecap="round"
+// 				strokeLinejoin="round"
+// 				transition={{
+// 					delay: 0.2,
+// 					type: "tween",
+// 					ease: "easeOut",
+// 					duration: 0.3,
+// 				}}
+// 			/>
+// 		</svg>
+// 	);
+// }
