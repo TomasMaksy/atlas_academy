@@ -60,7 +60,7 @@ export default function QuestionStep({
 		<div className="absolute top-0 left-0 w-full h-full flex flex-col justify-end items-center">
 			{/* TITLES */}
 			<div
-				className={`${pacifico.className} font-semibold text-3xl text-wrap whitespace-pre-line tracking-wide text-center z-0 mt-24 text-white/70`}
+				className={`${pacifico.className} font-semibold text-5xl text-wrap whitespace-pre-line tracking-wide text-center z-0 mt-24 text-white/70`}
 			>
 				<span className="text-7xl text-white/70">Hi, {title2}! 👋 </span>
 				<br />
@@ -91,7 +91,11 @@ export default function QuestionStep({
 					<div className="bottom-0 flex flex-col items-center text-center justify-end mb-8 p-4 h-[500px] z-50 ">
 						{" "}
 						<div className="md:w-[500px] sm:w-[350px] gap-4 flex flex-col">
-							<div className="flex w-full justify-center items-center font-black leading-tight text-white tracking-tighter sm:text-2xl md:text-3xl z-50 text-center">
+							<div
+								className=" flex w-full justify-center items-center font-black leading-tight  text-white tracking-tighter sm:text-2xl md:text-5xl z-50 text-center"
+								style={{ textShadow: "4px 4px 4px rgba(0, 0, 0, 0.11)" }}
+							>
+								{" "}
 								<Tooltip className="z-50" content="Pick up to 5 options!">
 									{question}
 								</Tooltip>

@@ -244,28 +244,6 @@ This brief but powerful moment will serve as the emotional core of your story.`,
 	// 	},
 ];
 
-function darkenRGBA(rgba: string, amount: number): string {
-	// Extract the RGBA values from the input
-	const rgbaValues = rgba.match(/\d+(\.\d+)?/g); // Match numbers (including decimals) in rgba
-
-	if (!rgbaValues || rgbaValues.length !== 4) {
-		throw new Error("Invalid RGBA string");
-	}
-
-	// Assign values to RGBA object
-	const r = Number(rgbaValues[0]);
-	const g = Number(rgbaValues[1]);
-	const b = Number(rgbaValues[2]);
-	const a = Number(rgbaValues[3]);
-
-	// Decrease each of the RGB values by the amount, ensuring they don't go below 0
-	const newR = Math.max(r - amount, 0);
-	const newG = Math.max(g - amount, 0);
-	const newB = Math.max(b - amount, 0);
-
-	// Return the new darker rgba color with the same alpha value
-	return `rgba(${newR}, ${newG}, ${newB}, ${a})`;
-}
 const Quiz = () => {
 	const [currentStep, setCurrentStep] = useState(0);
 	const router = useRouter();

@@ -91,7 +91,10 @@ export default function QuestionStep({
 				>
 					<div className="bottom-0 z-50 gap-4 flex flex-col items-center text-center justify-end mb-8 p-4 h-[500px] md:w-[1000px] sm:w-[350px] ">
 						{" "}
-						<div className=" flex w-full justify-center items-center font-black leading-tight text-white tracking-tighter sm:text-2xl md:text-3xl z-50 text-center">
+						<div
+							className=" flex w-full justify-center items-center font-black leading-tight  text-white tracking-tighter sm:text-2xl md:text-5xl z-50 text-center"
+							style={{ textShadow: "4px 4px 4px rgba(0, 0, 0, 0.11)" }}
+						>
 							<Tooltip className="z-50" content="Pick one option!">
 								{question}
 							</Tooltip>
