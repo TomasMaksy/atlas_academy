@@ -44,3 +44,12 @@ body {
   transition: opacity 0.5s ease-in-out;
 }
 
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.scrollbar-hidden {
+  scrollbar-width: none;
+}

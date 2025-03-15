@@ -1,3 +1,5 @@
+
+import "./styles.css";
 import Chat from "./chat";
 import Cover from "./cover";
 import { EssayProvider } from "./essay-context";
@@ -10,8 +12,10 @@ export default function Page() {
   return (
     <SidebarProvider>
       <EssayProvider>
-        <div className="h-full w-full flex relative  bg-white shadow-inner-strong">
-          <div className="absolute left-0 h-full w-[15%] transition-all duration-300">
+        <div
+          className="h-full w-full flex relative bg-[radial-gradient(ellipse_100%_100%_at_top,_#1af9ea,_#3fafa8,_#116661)] bg-[length:20%_100%] bg-left bg-no-repeat shadow-inner-strong"
+        >
+          <div className="absolute left-0 h-full w-[15%]  transition-all duration-300">
             <div className="h-full px-4 text-white py-2 shadow-md transition-all duration-300">
               <>
                 <div className="flex items-center justify-between text-2xl font-bold">

@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
-import { Avatar, Badge, Button, Link, Spinner } from "@heroui/react";
+import { Avatar, Badge, Card, CardBody, Link, Spinner } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import { UIMessage } from "ai";
-// import { useEssay } from "./essay-context";
+import { useEssay } from "./essay-context";
+import { useSidebar } from "./sidebar-context";
 
 export type MessageCardProps = React.HTMLAttributes<HTMLDivElement> & {
   message: UIMessage;
@@ -13,7 +14,8 @@ export type MessageCardProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const MessageCard = React.forwardRef<HTMLDivElement, MessageCardProps>(
   ({ message, ...props }, ref) => {
-    // const { essay, setEssay } = useEssay();
+    const { setId } = useEssay();
+    const { openRight } = useSidebar();
 
     const messageFailed = message.id === "failed";
     const messageLoading = message.id === "loading";
@@ -52,7 +54,7 @@ const MessageCard = React.forwardRef<HTMLDivElement, MessageCardProps>(
           {messageLoading ? (
             <Spinner variant="dots" />
           ) : messageFailed ? (
-            <div className="relative w-full rounded-medium px-4 py-3 text-default-600 shadow-lg bg-danger-50 border border-danger-100 text-foreground">
+            <div className="relative w-full rounded-medium px-4 py-3 shadow-lg bg-danger-50 border border-danger-100 text-foreground">
               <div className={"pr-20 text-small"}>
                 <p>
                   Something went wrong, if the issue persists please contact us
@@ -77,35 +79,60 @@ const MessageCard = React.forwardRef<HTMLDivElement, MessageCardProps>(
                       </div>
                     );
                   case "tool-invocation":
-                    const { toolCallId, state } = part.toolInvocation;
-                    if (state === "result") {
-                      // const { result } = part.toolInvocation;
+                    const { toolCallId, state, toolName } = part.toolInvocation;
+
+                    // if (toolName === "detectPlagiarism" && state === "result") {
+                      // return
+
+
+                    if (
+                      toolName != "createEssayFromScratchAndDisplay" &&
+                      toolName != "displayEssay"
+                    ) {
                       return (
                         <div
-                          key={toolCallId}
-                          className="shadow-lg rounded-2xl bg-white p-4"
+                          key={index}
+                          className="relative w-full rounded-medium px-4 py-3 text-default-600 shadow-lg bg-white pr-20 text-small"
                         >
-                          Complete
+                          <p>{toolName}</p>
                         </div>
                       );
                     }
+
                     return (
-                      <div
+                      <Card
+                        isPressable
                         key={toolCallId}
-                        className="w-[350px] shadow-lg rounded-2xl p-4 bg-gray-200 border border-gray-300 items-center justify-between  flex gap-4"
+                        isDisabled={state !== "result"}
+                        onPress={() => {
+                          if (state === "result") {
+                            const { result } = part.toolInvocation;
+                            const { id } = result;
+
+                            setId(id);
+                            openRight();
+                          }
+                        }}
+                        className="w-[400px] shadow-lg rounded-2xl bg-white font-bold text-xl "
                       >
-                        <Spinner />
-                        <p className="text-gray-600 font-bold text-xl">
-                          Generating...
-                        </p>
-                        <Button isIconOnly variant="light">
-                          <Icon
-                            icon="solar:full-screen-square-broken"
-                            width={42}
-                            className="text-[#2d7b76]"
-                          />
-                        </Button>
-                      </div>
+                        <CardBody className="flex flex-row items-center gap-4">
+                          {state === "result" ? (
+                            <>
+                              <Icon
+                                icon="solar:document-add-bold"
+                                height={90}
+                                className="text-[#2d7b76] h-full"
+                              />
+                              {part.toolInvocation.result.title}
+                            </>
+                          ) : (
+                            <>
+                              <Spinner />
+                              <p>Generating...</p>
+                            </>
+                          )}
+                        </CardBody>
+                      </Card>
                     );
                 }
               })}
