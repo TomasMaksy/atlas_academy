@@ -1,7 +1,7 @@
 "use client";
 
 import "./styles.css";
-import React, { useEffect } from "react";
+import React from "react";
 import useWebRTCAudioSession from "@/app/(private)/call/use-webrtc";
 
 import { Button, ScrollShadow } from "@heroui/react";
@@ -11,7 +11,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 export const VoiceChat: React.FC = () => {
   // State for voice selection
   // const [voice, setVoice] = useState("ash");
-  const [sent, setSent] = React.useState(false);
+  // const [sent, setSent] = React.useState(false);
 
   // WebRTC Audio Session Hook
   const {
@@ -19,8 +19,8 @@ export const VoiceChat: React.FC = () => {
     // registerFunction,
     handleStartStopClick,
     // msgs,
-    startSession,
-    sendTextMessage,
+    // startSession,
+    // sendTextMessage,
     conversation,
   } = useWebRTCAudioSession("echo");
 
@@ -43,15 +43,15 @@ export const VoiceChat: React.FC = () => {
   //   });
   // }, [registerFunction, toolsFunctions]);
 
-  useEffect(() => {
-    startSession();
-    setTimeout(() => {
-      if (sent) return;
-      sendTextMessage("Start interviewing me");
-      setSent(true);
-    }, 6000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   startSession();
+  //   setTimeout(() => {
+  //     if (sent) return;
+  //     sendTextMessage("Start interviewing me");
+  //     setSent(true);
+  //   }, 7000);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   // timeout for 6 second
 

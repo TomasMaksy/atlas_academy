@@ -40,7 +40,8 @@ const MessageCardHome = React.forwardRef<HTMLDivElement, MessageCardProps>(
 								className="shadow"
 								src={
 									message.role === "assistant"
-										? "/general_cap.png"
+										// ? "/general_cap.png"
+										? "https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/avatar_ai.png"
 										: "https://d2u8k2ocievbld.cloudfront.net/memojis/male/6.png"
 								}
 							/>
