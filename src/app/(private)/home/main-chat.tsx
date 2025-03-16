@@ -14,11 +14,11 @@ const suggestions = [
 	// 	label: "Draft an email",
 	// 	icon: "solar:document-add-outline",
 	// },
-	// {
-	// 	id: "create-image",
-	// 	label: "Create an image",
-	// 	icon: "solar:gallery-linear",
-	// },
+	{
+		id: "what-can-i-do",
+		label: "What can I do?",
+		icon: "solar:gallery-linear",
+	},
 	{
 		id: "help-write",
 		label: "Help me write",
