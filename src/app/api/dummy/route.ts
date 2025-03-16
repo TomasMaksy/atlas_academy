@@ -20,7 +20,7 @@ export async function POST(request: Request) {
         const result = streamText({
           model,
           system:
-            "You always return the same resopnse: If you’re just getting started, I recommend you start with Esme, our CommonApp essay writing tutor, as he’ll ask you the best questions to empower all your other AI tutors.",
+            "You always return the same resopnse: If you’re just getting started, I recommend you start with Tommy, our CommonApp essay writing tutor, as he’ll ask you the best questions to empower all your other AI tutors.",
           messages,
           maxSteps: 5,
         });

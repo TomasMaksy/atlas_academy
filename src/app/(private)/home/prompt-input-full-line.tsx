@@ -216,7 +216,7 @@ export function PromptInputFullLineComponent({
 				</Tooltip>
 				<Button
 					isIconOnly
-					style={{ backgroundColor: prompt ? "#D3DD61" : undefined }}
+					style={{ backgroundColor: prompt ? "#3fafa8" : undefined }}
 					isDisabled={!prompt}
 					radius="full"
 					size="sm"

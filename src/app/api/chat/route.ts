@@ -100,7 +100,7 @@ export async function POST(request: Request) {
       messages: Array<Message>;
     } = await request.json();
 
-    console.log(essay)
+    console.log(essay);
 
     return createDataStreamResponse({
       execute: (dataStream) => {

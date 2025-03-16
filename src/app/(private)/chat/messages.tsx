@@ -90,7 +90,7 @@ export default function Messages({
     >
       <div className="text-start">
         <h1 className="text-5xl font-bold">
-          Hey, it&apos;s <span className="text-[#3fafa8]">Esme</span> 👋
+          Hey, it&apos;s <span className="text-[#3fafa8]">Tommy</span> 👋
         </h1>
         <h2 className="text-3xl md:text-4xl font-bold mt-4">How can I help?</h2>
       </div>

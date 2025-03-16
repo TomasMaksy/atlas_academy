@@ -19,7 +19,7 @@ export default function Page() {
 				<div className="h-full px-4 text-white py-2 shadow-md transition-all duration-300">
 					<>
 						<div className="flex items-center justify-between text-2xl font-bold">
-							<h1>Esme</h1>
+							<h1>Tommy</h1>
 						</div>
 						<p className="text-sm font-semibold">CommonApp Essay Writer</p>
 
@@ -56,7 +56,7 @@ export default function Page() {
 								animate={{ y: 0, opacity: 1 }}
 								exit={{ y: 100, opacity: 0 }}
 								transition={{ duration: 0.5, ease: "easeOut" }}
-								className="absolute bottom-[-30px] flex flex-col items-center"
+								className="absolute bottom-[-30px] flex flex-col items-center mr-4"
 							>
 								<Badge
 									content="x"
