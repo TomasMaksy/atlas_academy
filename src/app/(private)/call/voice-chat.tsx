@@ -61,7 +61,7 @@ export const VoiceChat: React.FC = () => {
 
   useEffect(() => {
     // only add conversation to displayMsg but dont delete
-    if (conversation.length > displayMsg.length) {
+    if (conversation.length != 0) {
       setDisplayMsg(conversation);
     }
   }, [conversation, displayMsg.length]);
@@ -74,7 +74,7 @@ export const VoiceChat: React.FC = () => {
 
       <ScrollShadow className="flex h-[600px] flex-col gap-6 overflow-y-auto pr-20">
         {displayMsg.map((msg, index) => {
-          if (index === 0) return null;
+          // if (index === 0) return null;
           if (!msg.text || msg.text === "") return null;
 
           return (
