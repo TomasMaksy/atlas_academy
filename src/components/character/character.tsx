@@ -39,6 +39,8 @@ export default function Character({ chatState, closeup, model, talk }: Character
     if (chatState == "submitted") setAnimation("Think");
     else if (chatState == "streaming") setAnimation(talk ? "Talk" : "Text");
     else setAnimation("Idle");
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatState]);
 
   return (

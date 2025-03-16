@@ -13,8 +13,6 @@ export default function Page() {
 	const [chatState, setChatState] = useState("");
 	const [hidden, setHidden] = useState(true);
 
-	// const toggleGuido = () => setHidden((prev) => !prev);
-
 	return (
 		<div className="h-full w-full flex relative bg-[radial-gradient(ellipse_100%_100%_at_top,_#1af9ea,_#3fafa8,_#116661)] bg-[length:20%_100%] bg-left bg-no-repeat shadow-inner-strong">
 			<div className="absolute left-0 h-full w-[15%] transition-all duration-300">
@@ -33,7 +31,10 @@ export default function Page() {
 									model={"/models/esme.glb"}
 									talk={false}
 								></Character>
-								<Button className="w-full mt-0 py-3 text-xl font-bold bg-white text-[#3fafa8]">
+								<Button
+									onPress={() => setHidden((prev) => !prev)}
+									className="w-full mt-0 py-3 text-xl font-bold bg-white text-[#3fafa8]"
+								>
 									+ New Chat
 								</Button>
 							</>
