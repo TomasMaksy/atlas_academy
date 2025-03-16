@@ -8,19 +8,19 @@ export default function DaysTillDeadlineCard() {
 	const data = {
 		title: "Days Till Deadline",
 		value: 8,
-		color: "[#]",
-		iconName: "solar:clock-circle-outline",
+		color: "[#FF5722]",
+		iconName: "solar:calendar-outline",
 	};
 
 	return (
-		<Card className="flex flex-col  p-4 dark:border-default-100 flex-grow">
+		<Card className="flex flex-col  p-4 dark:border-default-100 flex-grow w-[330px]">
 			<div
 				className={cn(
 					"flex h-8 w-8 items-center justify-center rounded-md border p-0.5",
-					"border-[#7e2ec4]/30 bg-[#7e2ec4]/20"
+					"border-[#de3e3e]/30 bg-[#de3e3e]/40"
 				)}
 			>
-				<Icon className="text-[#7e2ec4]" icon={data.iconName} width={20} />
+				<Icon className="text-[#ee3737]" icon={data.iconName} width={20} />
 			</div>
 
 			<div className="pt-1">
@@ -35,7 +35,7 @@ export default function DaysTillDeadlineCard() {
 				aria-label="status"
 				className="mt-2"
 				classNames={{
-					indicator: "bg-[#7e2ec4]",
+					indicator: "bg-[#ee3737]",
 				}}
 				value={100 - data.value} // Shows increasing urgency
 			/>

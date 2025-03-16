@@ -138,7 +138,7 @@ export default function QuestionStep({
 					) : (
 						<div className="bottom-0 z-20 gap-4 flex flex-col items-center text-center justify-end p-4 mb-8 h-[500px] whitespace-pre-line ">
 							<div
-								className=" flex w-full justify-center items-center font-black leading-tight  text-white tracking-tighter sm:text-2xl md:text-5xl z-50 text-center"
+								className=" flex w-full justify-center items-center font-black leading-tight text-white tracking-tighter sm:text-2xl md:text-5xl z-50 text-center"
 								style={{ textShadow: "4px 4px 4px rgba(0, 0, 0, 0.11)" }}
 							>
 								{" "}

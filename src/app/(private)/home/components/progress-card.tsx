@@ -13,14 +13,14 @@ export default function ApplicationProgressCard() {
 	};
 
 	return (
-		<Card className="flex flex-col p-4 flex-grow">
+		<Card className="flex flex-col p-4 flex-grow w-[330px]">
 			<div
 				className={cn(
 					"flex h-8 w-8 items-center justify-center rounded-md border p-0.5",
-					"border-[#3fafa8]/20 bg-[#3fafa8]/30 "
+					"border-[#8259B0]/20 bg-[#8259B0]/30 "
 				)}
 			>
-				<Icon className="text-[#3fafa8]" icon={data.iconName} width={20} />
+				<Icon className="text-[#8259B0]" icon={data.iconName} width={20} />
 			</div>
 
 			<div className="pt-1">
@@ -35,7 +35,7 @@ export default function ApplicationProgressCard() {
 				aria-label="status"
 				className="mt-2"
 				classNames={{
-					indicator: "bg-[#3fafa8]",
+					indicator: "bg-[#8259B0]",
 				}}
 				value={data.value}
 			/>
