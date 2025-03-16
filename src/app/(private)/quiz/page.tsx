@@ -17,13 +17,12 @@ const demo = true;
 const steps = [
   {
     title: "Hi! 👋 ",
-    title2: "My name is Esme!",
+    title2: "My name is Tommy!",
     imageUrl: "/esme_1.png",
     color: "rgba(63, 175, 168, 1)",
     color2: "#C9D843",
     question: "What's your name?",
     inputText: "Enter your name",
-    placeholder: demo ? "Martin" : undefined,
 
     field: "name" as keyof FormValues,
     options: ["", "", "", "", "", ""],
@@ -122,8 +121,8 @@ const steps = [
   {
     title: "",
     title2: "What's your writing flavour! ✍️",
-    imageUrl: "/guido_1.png",
-    color: "rgba(108, 91, 123, 1)",
+    imageUrl: "/esme_2.png",
+    color: "rgba(63, 175, 168, 1)",
     question: "What’s your preferred storytelling style for essays?",
     options: [
       "Analytical – Focused on logic, reasoning, and problem-solving 🧑‍💻",
@@ -218,7 +217,7 @@ const steps = [
   {
     title: "Focus on a...",
     title2: "Defining 5-Second Moment ⏳⚡",
-    imageUrl: "/Milo_3.png",
+    imageUrl: "/milo_3.png",
     color: "rgba(255, 87, 34, 1)",
     question: `Now, zero in on a pivotal five-second moment within your experience—an instant that marked a shift in your perspective, emotions, or actions. \nThis could be the exact second you made a decision, had a breakthrough realization, or felt a surge of emotion. Describe this moment vividly, capturing the details that made it impactful.`,
     options: ["", "", "", "", ""],
