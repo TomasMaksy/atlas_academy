@@ -208,8 +208,7 @@ const steps = [
     question: `Now, take a moment to think about an event or experience that has played a major role in shaping the person you are today.\n You may have several, but focus on one that stands out as particularly meaningful. Jot down the key details—without analyzing or reflecting on them just yet. Treat it like a journal entry, simply noting what happened.`,
     options: ["", "", "", "", ""],
     inputText: "",
-    placeholder:
-      "I built a board game for elderly people to help them improve their memory. I later worked with my brother to adapt it to a computer game.",
+    placeholder: "I started a student programming club at my school.",
     field: "keyMoments" as keyof FormValues,
     addText: `For example:
 - I helped a lost child find their parents at a crowded festival...
@@ -225,7 +224,7 @@ const steps = [
     options: ["", "", "", "", ""],
     inputText: "",
     placeholder:
-      "The moment we came back to the retirement home where we left the first few demo games for the elderly residents to trial, and were met with overwhelmingly positive feedback on how fun the game was and how it had already helped a few senior better remember little daily things, I knew we were on the right track. ",
+      "The moment many of our students won the national informatics olympiad, I knew that the program and curriculum we built in our club really made a difference.",
     field: "fiveSec" as keyof FormValues,
     addText: `For example:
 - The instant I hit ‘submit’ on my first college application..."

@@ -1,7 +1,7 @@
 "use client";
 
 import "./styles.css";
-import React from "react";
+import React, { useEffect } from "react";
 import useWebRTCAudioSession from "@/app/(private)/call/use-webrtc";
 
 import { Button, ScrollShadow } from "@heroui/react";
@@ -12,6 +12,12 @@ export const VoiceChat: React.FC = () => {
   // State for voice selection
   // const [voice, setVoice] = useState("ash");
   // const [sent, setSent] = React.useState(false);
+  const [displayMsg, setDisplayMsg] = React.useState<
+    {
+      text: string;
+      role: string;
+    }[]
+  >([]);
 
   // WebRTC Audio Session Hook
   const {
@@ -53,7 +59,12 @@ export const VoiceChat: React.FC = () => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 
-  // timeout for 6 second
+  useEffect(() => {
+    // only add conversation to displayMsg but dont delete
+    if (conversation.length != 0) {
+      setDisplayMsg(conversation);
+    }
+  }, [conversation, displayMsg.length]);
 
   return (
     <div className="h-full pt-20 pr-40 flex flex-col justify-between">
@@ -62,8 +73,8 @@ export const VoiceChat: React.FC = () => {
       </Button> */}
 
       <ScrollShadow className="flex h-[600px] flex-col gap-6 overflow-y-auto pr-20">
-        {conversation.map((msg, index) => {
-          if (index === 0) return null;
+        {displayMsg.map((msg, index) => {
+          // if (index === 0) return null;
           if (!msg.text || msg.text === "") return null;
 
           return (
