@@ -297,7 +297,7 @@ const Quiz = () => {
 			if (!response.ok) {
 				throw new Error("Failed to submit form");
 			} else {
-				router.push("/home"); // Redirect to /chat after the last step
+				router.push("/chat"); // Redirect to /chat after the last step
 			}
 		} else {
 			setCurrentStep(step);
@@ -312,7 +312,7 @@ const Quiz = () => {
 			}}
 		>
 			<div className="items-center flex justify-center z-50">
-				<section className="absolute w-[26vw] opacity-50 -bottom-0 z-50  ">
+				<section className="absolute w-[29vw] opacity-50 ml-1 -bottom-0 z-50  ">
 					<Progress
 						classNames={{
 							base: "px-0.5 mb-5 ",
