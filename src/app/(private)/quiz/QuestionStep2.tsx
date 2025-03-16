@@ -122,49 +122,49 @@ export default function QuestionStep({
 								>
 									<div className="items-center justify-center gap-2 flex flex-wrap ">
 										<CustomCheckbox value="Altruistic" color={color}>
-											Altruistic
-										</CustomCheckbox>
-										<CustomCheckbox value="Collaborative" color={color}>
-											Collaborative
+											Altruistic 🤝
 										</CustomCheckbox>
 										<CustomCheckbox value="Creative" color={color}>
-											Creative
+											Creative 🎨
 										</CustomCheckbox>
 										<CustomCheckbox value="Curious" color={color}>
-											Curious
+											Curious 🤔
 										</CustomCheckbox>
 										<CustomCheckbox value="Driven" color={color}>
-											Driven
+											Driven 💪
 										</CustomCheckbox>
 										<CustomCheckbox value="Ethical" color={color}>
-											Ethical
+											Ethical ⚖️
 										</CustomCheckbox>
 										<CustomCheckbox value="Hard-working" color={color}>
-											Hard-working
+											Hard-working 💼
 										</CustomCheckbox>
 										<CustomCheckbox value="Independent thinker" color={color}>
-											Independent thinker
+											Independent thinker 🧠
 										</CustomCheckbox>
 										<CustomCheckbox value="Innovative" color={color}>
-											Innovative
+											Innovative 💡
 										</CustomCheckbox>
 										<CustomCheckbox value="Open-minded" color={color}>
-											Open-minded
+											Open-minded 🌍
 										</CustomCheckbox>
 										<CustomCheckbox value="Persistent" color={color}>
-											Persistent
+											Persistent 🔄
 										</CustomCheckbox>
 										<CustomCheckbox value="Resilient" color={color}>
-											Resilient
+											Resilient 💪
 										</CustomCheckbox>
 										<CustomCheckbox value="Self-starter" color={color}>
-											Self-starter
+											Self-starter 🚀
+										</CustomCheckbox>
+										<CustomCheckbox value="Collaborative" color={color}>
+											Collaborative 🤝
 										</CustomCheckbox>
 										<CustomCheckbox value="Thoughtful" color={color}>
-											Thoughtful
+											Thoughtful 💭
 										</CustomCheckbox>
 										<CustomCheckbox value="Well-rounded" color={color}>
-											Well-rounded
+											Well-rounded 🌀
 										</CustomCheckbox>
 									</div>
 								</CheckboxGroup>

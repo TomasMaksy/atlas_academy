@@ -15,7 +15,7 @@ export default async function Component() {
 			</div>
 			<div className=" flex md:flex-row sm:flex-col justify-center gap-8 text-[#08010e] mx-8 mb-16">
 				<AgentCard
-					higlighted={messages.length > 1}
+					higlighted={messages.length > 0}
 					color="#3fafa8,#1af9ea"
 					character="Esme"
 					title="Common Essay Writer"
@@ -42,7 +42,9 @@ export default async function Component() {
 				/>
 			</div>
 			<div className="flex flex-col justify-between items-stretch flex-grow gap-4 my-12 mx-8 w-full">
-				<span className="text-2xl font-bold">Track your progress</span>
+				<span className="text-2xl font-bold text-default-500">
+					Track your progress
+				</span>
 				<div className="flex flex-row flex-grow gap-8 max-h-[160px] justify-between mb-44 w-[calc(100%-64px)]">
 					<ProgressCard />
 					<DeadlineCard />
